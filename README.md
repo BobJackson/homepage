@@ -26,6 +26,7 @@
 - **📊 项目指标看板**：精选项目以数据卡呈现可量化成果（P99 < 500ms、8s→1.2s、限流错误率 ↓90% 等）。
 - **📱 响应式 + 动效**：适配移动端到桌面端，Framer Motion 滚动揭示动画流畅自然。
 - **♿ 可访问性**：浅色模式文字对比度符合 WCAG AA；尊重 `prefers-reduced-motion`。
+- **🚢 容器化 + CI/CD**：多阶段 Docker 构建（Node 构建 → Nginx 服务），GitHub Actions 推送即自动构建镜像、推送 Docker Hub 并部署到阿里云。
 
 ## 🛠 技术栈
 
@@ -45,6 +46,13 @@ homepage/
 ├── vite.config.js             # Vite 配置
 ├── tailwind.config.js         # Tailwind 主题扩展（颜色/动画/阴影）
 ├── postcss.config.js          # PostCSS 配置
+├── Dockerfile                 # 多阶段构建（Node 构建 → Nginx 服务）
+├── nginx.conf                 # Nginx 配置（SPA 回退 + gzip + 缓存 + 健康检查）
+├── docker-compose.yml         # 容器编排（本地构建 / 服务器部署）
+├── .dockerignore              # Docker 构建上下文忽略清单
+├── .github/
+│   └── workflows/
+│       └── deploy.yml         # ⭐ CI/CD：构建推送镜像 + SSH 部署阿里云
 ├── public/
 │   └── favicon.svg            # 站点图标
 └── src/
@@ -110,9 +118,79 @@ npm run preview
 
 > 主题色可在 `src/index.css` 的 `:root` / `.light` 中调整 CSS 变量（`--c-accent`、`--c-accent-2` 等）。
 
-## 📦 部署
+## 🐳 Docker 与自动化部署（CI/CD）
 
-构建产物为纯静态文件（`dist/`），可部署到任意静态托管平台：
+项目已容器化，并配置 **GitHub Actions 全自动流水线**：推送到 `main` 分支后，自动
+**构建 Docker 镜像 → 推送 Docker Hub → SSH 登录阿里云服务器重新部署**。
+
+### 流水线概览
+
+```
+  git push (main)
+        │
+        ▼
+  ┌──────────────────┐     ┌──────────────────┐     ┌──────────────────┐
+  │ Job1 构建 & 推送   │ ──▶ │ Job2 SSH 部署      │ ──▶ │ 容器重新运行       │
+  │ Docker Buildx     │     │ pull + docker run │     │ http://host:port │
+  │ → Docker Hub      │     │ (appleboy/ssh)    │     │ --restart always │
+  └──────────────────┘     └──────────────────┘     └──────────────────┘
+```
+
+工作流文件：[`.github/workflows/deploy.yml`](.github/workflows/deploy.yml)
+
+### 本地 Docker 构建与运行
+
+```bash
+# 方式一：原生 docker
+docker build -t homepage:latest .
+docker run -d --name homepage -p 8080:80 --restart unless-stopped homepage:latest
+
+# 方式二：compose（本地构建并运行）
+docker compose up -d --build
+
+# 访问 http://localhost:8080 ；健康检查 http://localhost:8080/healthz
+```
+
+### 🔑 需配置的 GitHub Secrets
+
+在仓库 **Settings → Secrets and variables → Actions → Secrets** 中添加：
+
+| Secret | 说明 | 示例 |
+|--------|------|------|
+| `DOCKERHUB_USERNAME` | Docker Hub 用户名 | `bobjackson` |
+| `DOCKERHUB_TOKEN` | Docker Hub **Access Token**（非登录密码） | `dckr_pat_xxx` |
+| `ALIYUN_HOST` | 阿里云服务器公网 IP / 域名 | `47.xx.xx.xx` |
+| `ALIYUN_USER` | SSH 登录用户名 | `root` |
+| `ALIYUN_SSH_KEY` | SSH **私钥**全文（公钥需在服务器 `~/.ssh/authorized_keys`） | `-----BEGIN OPENSSH PRIVATE KEY-----` |
+| `ALIYUN_PORT` | SSH 端口（可选，默认 22） | `22` |
+
+可选仓库变量（同页 **Variables** 标签）：
+
+| Variable | 说明 | 默认 |
+|----------|------|------|
+| `APP_PORT` | 容器映射到宿主机的端口 | `8080` |
+
+### 🖥 阿里云服务器前置准备
+
+1. **安装 Docker**（若未安装）：
+   ```bash
+   curl -fsSL https://get.docker.com | sh
+   sudo systemctl enable --now docker
+   ```
+2. **配置 SSH 免密**：生成一对专用密钥，公钥追加到服务器 `~/.ssh/authorized_keys`，私钥存入 `ALIYUN_SSH_KEY`。
+   ```bash
+   ssh-keygen -t ed25519 -C "github-actions-deploy"   # 本地生成
+   # 将 id_ed25519.pub 内容追加到服务器的 ~/.ssh/authorized_keys
+   # 将 id_ed25519（私钥）内容粘贴到 GitHub Secret: ALIYUN_SSH_KEY
+   ```
+3. **开放安全组端口**：在阿里云控制台安全组放行 `APP_PORT`（默认 8080）的 TCP 入方向。
+4. （可选）绑定域名 + Nginx/Caddy 反向代理到容器端口，并申请 HTTPS 证书。
+
+> ⚠️ **安全提示**：`DOCKERHUB_TOKEN` 使用最小权限 Access Token（公开仓库仅需 Read/Write）；`ALIYUN_SSH_KEY` 建议使用**专用部署密钥**而非个人主密钥。
+
+## 📦 其他托管方式（纯静态）
+
+构建产物为纯静态文件（`dist/`），也可部署到任意静态托管平台：
 
 <details>
 <summary><b>Vercel（推荐，零配置）</b></summary>
