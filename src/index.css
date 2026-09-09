@@ -1,0 +1,198 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   主题令牌 · 暗色科技感（默认） + 浅色模式
+   ============================================================ */
+:root,
+.dark {
+  --c-bg: 7 11 20; /* #070b14 深空蓝黑 */
+  --c-surface: 13 19 33; /* 卡片底 */
+  --c-elevated: 19 27 45; /* 悬浮/高亮底 */
+  --c-border: 45 58 82; /* 描边 */
+  --c-primary: 233 239 250; /* 主文字 */
+  --c-secondary: 160 174 199; /* 次级文字 */
+  --c-muted: 120 133 158; /* 弱化文字 */
+  --c-accent: 34 211 238; /* 青色 #22d3ee */
+  --c-accent-2: 168 85 247; /* 紫色 #a855f7 */
+
+  --grid-opacity: 0.5;
+  --glass-bg: rgb(19 27 45 / 0.6);
+  --nav-bg: rgb(7 11 20 / 0.72);
+  color-scheme: dark;
+}
+
+.light {
+  --c-bg: 246 248 252; /* #f6f8fc */
+  --c-surface: 255 255 255;
+  --c-elevated: 240 244 251;
+  --c-border: 214 222 236;
+  --c-primary: 15 23 42; /* slate-900 */
+  --c-secondary: 55 68 96;
+  --c-muted: 100 112 138;
+  --c-accent: 8 145 178; /* cyan-600，浅底更清晰 */
+  --c-accent-2: 147 51 234; /* purple-600 */
+
+  --grid-opacity: 0.6;
+  --glass-bg: rgb(255 255 255 / 0.7);
+  --nav-bg: rgb(246 248 252 / 0.8);
+  color-scheme: light;
+}
+
+/* ============================================================
+   基础样式
+   ============================================================ */
+@layer base {
+  * {
+    border-color: rgb(var(--c-border));
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 84px;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply bg-bg text-primary font-sans antialiased;
+    background-color: rgb(var(--c-bg));
+    overflow-x: hidden;
+    transition: background-color 0.4s ease, color 0.4s ease;
+  }
+
+  ::selection {
+    background: rgb(var(--c-accent) / 0.3);
+    color: rgb(var(--c-primary));
+  }
+
+  /* 滚动条 */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: rgb(var(--c-bg));
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgb(var(--c-border));
+    border-radius: 999px;
+    border: 2px solid rgb(var(--c-bg));
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(var(--c-accent) / 0.6);
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-semibold tracking-tight;
+    text-wrap: balance;
+  }
+}
+
+/* ============================================================
+   组件与工具类
+   ============================================================ */
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+  }
+
+  /* 渐变文字 */
+  .text-gradient {
+    background: linear-gradient(120deg, rgb(var(--c-accent)), rgb(var(--c-accent-2)));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* 玻璃拟态卡片 */
+  .glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgb(var(--c-border) / 0.7);
+  }
+
+  /* 通用卡片 + 悬浮光效 */
+  .card {
+    @apply relative rounded-2xl border border-border/70 bg-surface/60 p-6 transition-all duration-300;
+  }
+  .card-hover {
+    @apply hover:-translate-y-1 hover:border-accent/50 hover:shadow-glow;
+  }
+
+  /* 顶部渐变描边（卡片高亮线） */
+  .card-accent::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgb(var(--c-accent)), rgb(var(--c-accent-2)), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .card-accent:hover::before {
+    opacity: 1;
+  }
+
+  /* 区块标题的小标签 */
+  .eyebrow {
+    @apply inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent/5 px-3.5 py-1.5 text-xs font-medium uppercase tracking-widest text-accent;
+  }
+
+  /* 网格背景层 */
+  .bg-grid {
+    background-image: linear-gradient(rgb(var(--c-border) / var(--grid-opacity)) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(var(--c-border) / var(--grid-opacity)) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  /* 主按钮 */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 text-sm font-semibold text-white transition-all duration-300;
+    background: linear-gradient(120deg, rgb(var(--c-accent)), rgb(var(--c-accent-2)));
+    background-size: 200% 200%;
+    box-shadow: 0 8px 30px -10px rgb(var(--c-accent) / 0.7);
+  }
+  .btn-primary:hover {
+    @apply animate-gradient-x shadow-glow;
+    transform: translateY(-2px);
+  }
+
+  /* 次按钮 */
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border border-border bg-elevated/40 px-6 py-3 text-sm font-semibold text-primary transition-all duration-300;
+  }
+  .btn-ghost:hover {
+    @apply border-accent/50 bg-elevated/80;
+    transform: translateY(-2px);
+  }
+
+  /* 技能标签 */
+  .chip {
+    @apply inline-flex items-center rounded-lg border border-border/80 bg-elevated/50 px-3 py-1.5 text-xs font-medium text-secondary transition-colors duration-200 hover:border-accent/50 hover:text-accent;
+  }
+}
+
+/* ============================================================
+   动效辅助
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* 光晕浮动背景球 */
+.orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(80px);
+  opacity: 0.5;
+  pointer-events: none;
+}
