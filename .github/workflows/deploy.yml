@@ -77,8 +77,8 @@ jobs:
             set -euo pipefail
 
             IMAGE="${IMAGE_NAME}:latest"
-            # 宿主机端口：默认 10087（遵循服务器 100xx 前端端口约定，避开已占用的 8080/growth-api）
-            PORT="${APP_PORT:-10087}"
+            # 宿主机端口：默认 28081（与 nginx 反代 me.wangyousong.com → 172.20.0.1:28081 对应）
+            PORT="${APP_PORT:-28081}"
 
             echo "==> 登录 Docker Hub"
             echo "$DOCKERHUB_TOKEN" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin

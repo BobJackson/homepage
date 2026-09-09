@@ -168,7 +168,7 @@ docker compose up -d --build
 
 | Variable | 说明 | 默认 |
 |----------|------|------|
-| `APP_PORT` | 容器映射到宿主机的端口 | `10087` |
+| `APP_PORT` | 容器映射到宿主机的端口 | `28081` |
 
 ### 🖥 阿里云服务器前置准备
 
@@ -183,10 +183,25 @@ docker compose up -d --build
    # 将 id_ed25519.pub 内容追加到服务器的 ~/.ssh/authorized_keys
    # 将 id_ed25519（私钥）内容粘贴到 GitHub Secret: ALIYUN_SSH_KEY
    ```
-3. **开放安全组端口**：在阿里云控制台安全组放行 `APP_PORT`（默认 8080）的 TCP 入方向。
-4. （可选）绑定域名 + Nginx/Caddy 反向代理到容器端口，并申请 HTTPS 证书。
+3. **开放安全组端口**：在阿里云控制台安全组放行 `APP_PORT`（默认 28081）的 TCP 入方向（80/443 通常已放行）。
+4. **接入现有 Nginx 反向代理**：将 [`deploy/nginx/homepage.conf`](deploy/nginx/homepage.conf) 放入服务器 nginx 容器的 conf.d 目录并重载，即可通过 `https://me.wangyousong.com` 访问。
 
 > ⚠️ **安全提示**：`DOCKERHUB_TOKEN` 使用最小权限 Access Token（公开仓库仅需 Read/Write）；`ALIYUN_SSH_KEY` 建议使用**专用部署密钥**而非个人主密钥。
+
+### 🌐 线上部署结构（me.wangyousong.com）
+
+当前服务器的实际拓扑：
+
+```
+用户 → https://me.wangyousong.com
+     → 现有 nginx 容器（80/443 + 泛域名证书 *.wangyousong.com）
+     → proxy_pass http://172.20.0.1:28081
+     → homepage 容器（内置 nginx 提供静态资源，容器内 80）
+```
+
+- **端口约定**：主页容器发布宿主机 `28081`（避开已占用的 8080/28080 等），与 nginx 反代目标一致。
+- **证书**：复用现有泛域名证书 `/etc/ssl/cert/fullchain.cer`。
+- **配置**：[`deploy/nginx/homepage.conf`](deploy/nginx/homepage.conf) 放入 nginx 容器 conf.d 后，`nginx -t && nginx -s reload` 生效。
 
 ## 📦 其他托管方式（纯静态）
 
