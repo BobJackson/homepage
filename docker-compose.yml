@@ -1,7 +1,7 @@
 # Docker 编排：既可用于本地构建测试，也可用于服务器部署
 # - 本地构建并运行： docker compose up -d --build
 # - 服务器拉取部署： DOCKER_IMAGE=<用户名>/homepage:latest docker compose pull && docker compose up -d
-# 镜像地址由环境变量 DOCKER_IMAGE 注入；APP_PORT 控制宿主机端口（默认 8080）。
+# 镜像地址由环境变量 DOCKER_IMAGE 注入；APP_PORT 控制宿主机端口（默认 10087，避开服务器上已占用的 8080）。
 
 services:
   homepage:
@@ -12,7 +12,7 @@ services:
     container_name: homepage
     restart: unless-stopped
     ports:
-      - "${APP_PORT:-8080}:80"
+      - "${APP_PORT:-10087}:80"
     healthcheck:
       test: ["CMD", "wget", "-qO-", "http://127.0.0.1/healthz"]
       interval: 30s
