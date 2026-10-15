@@ -1,15 +1,17 @@
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, Moon, Sun, Download } from 'lucide-react'
-import { navItems, profile } from '../data/resume'
+import { Menu, X, Moon, Sun, Download, Globe } from 'lucide-react'
 import useScrollSpy from '../hooks/useScrollSpy'
+import { useLanguage } from '../i18n/LanguageContext'
 
-const sectionIds = navItems.map((n) => n.id)
+const sectionIds = ['ai', 'advantages', 'skills', 'experience', 'projects', 'contact']
 
 export default function Navbar({ isDark, toggleTheme }) {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
   const activeId = useScrollSpy(sectionIds, 140)
+  const { t, data, lang, toggleLang } = useLanguage()
+  const { navItems, profile } = data
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24)
@@ -73,9 +75,20 @@ export default function Navbar({ isDark, toggleTheme }) {
 
           {/* 右侧操作 */}
           <div className="flex items-center gap-2">
+            {/* 语言一键切换 */}
+            <button
+              onClick={toggleLang}
+              aria-label={t.langSwitchAria}
+              title={t.langSwitchAria}
+              className="inline-flex h-9 items-center gap-1.5 rounded-lg border border-border/70 bg-elevated/40 px-2.5 text-xs font-semibold text-secondary transition-all hover:border-accent/50 hover:text-accent"
+            >
+              <Globe className="h-4 w-4" />
+              {lang === 'zh' ? 'EN' : '中'}
+            </button>
+
             <button
               onClick={toggleTheme}
-              aria-label="切换主题"
+              aria-label={t.themeAria}
               className="grid h-9 w-9 place-items-center rounded-lg border border-border/70 bg-elevated/40 text-secondary transition-all hover:border-accent/50 hover:text-accent"
             >
               <AnimatePresence mode="wait" initial={false}>
@@ -94,13 +107,13 @@ export default function Navbar({ isDark, toggleTheme }) {
 
             <button onClick={() => go('contact')} className="btn-primary hidden !px-4 !py-2 sm:inline-flex">
               <Download className="h-4 w-4" />
-              联系我
+              {t.navContact}
             </button>
 
             {/* 移动端菜单按钮 */}
             <button
               onClick={() => setOpen((v) => !v)}
-              aria-label="菜单"
+              aria-label={t.menuAria}
               className="grid h-9 w-9 place-items-center rounded-lg border border-border/70 bg-elevated/40 text-secondary lg:hidden"
             >
               {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}

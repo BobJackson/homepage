@@ -23,6 +23,7 @@
 - **🤖 AI 素养专区**：独立版块展示 MCP、Spring AI、LangChain4j、Dify、RAG 等大模型工程化落地能力，突出 AI 时代的核心竞争力。
 - **💻 Java 终端卡片**：首屏以语法高亮的 Java 代码形式呈现候选人「能力画像」，强化工程师身份认同。
 - **🌓 双主题**：暗色科技感为默认，一键切换浅色模式，偏好持久化到 `localStorage`。
+- **🌐 中英双语**：根据浏览器环境自动加载中文 / 英文，导航栏一键切换，选择持久化到 `localStorage`（多标签页同步），刷新后保持。
 - **📊 项目指标看板**：精选项目以数据卡呈现可量化成果（P99 < 500ms、8s→1.2s、限流错误率 ↓90% 等）。
 - **📱 响应式 + 动效**：适配移动端到桌面端，Framer Motion 滚动揭示动画流畅自然。
 - **♿ 可访问性**：浅色模式文字对比度符合 WCAG AA；尊重 `prefers-reduced-motion`。
@@ -57,10 +58,13 @@ homepage/
 │   └── favicon.svg            # 站点图标
 └── src/
     ├── main.jsx               # 应用入口
-    ├── App.jsx                # 根组件（组装各版块 + 主题）
+    ├── App.jsx                # 根组件（组装各版块 + 主题 + 语言 Provider）
     ├── index.css              # 全局样式 / 主题令牌 / 工具类
+    ├── i18n/
+    │   ├── ui.js              # 界面级文案（中英双语，按钮 / 标题 / 标签）
+    │   └── LanguageContext.jsx  # 语言上下文（自动检测 + localStorage 持久化 + 一键切换）
     ├── data/
-    │   └── resume.js          # ⭐ 所有简历内容（数据驱动，改这里即可）
+    │   └── resume.js          # ⭐ 所有简历内容（中英双语，改这里即可）
     ├── hooks/
     │   ├── useTheme.js        # 主题切换（dark/light + 持久化）
     │   └── useScrollSpy.js    # 滚动监听，导航高亮当前区块
@@ -102,10 +106,12 @@ npm run preview
 
 ## ✏️ 内容定制
 
-所有个人信息与文案都集中在 **[`src/data/resume.js`](src/data/resume.js)**，采用数据驱动设计——**无需改动组件代码**即可更新内容：
+所有个人信息与文案都集中在 **[`src/data/resume.js`](src/data/resume.js)**（简历内容）与 **[`src/i18n/ui.js`](src/i18n/ui.js)**（界面文案），采用数据驱动设计——**无需改动组件代码**即可更新内容：
 
-| 导出字段 | 对应版块 |
-|----------|----------|
+`resume.js` 导出 `{ zh, en }` 双语结构，每个语言下包含：
+
+| 字段 | 对应版块 |
+|------|----------|
 | `profile` | 姓名、职位、一句话主张、联系方式、期望职位 |
 | `heroStats` | 首屏核心数据卡 |
 | `aiLiteracy` | AI 素养专区（能力卡 + 成果数据） |
@@ -117,6 +123,13 @@ npm run preview
 | `navItems` | 导航栏菜单项 |
 
 > 主题色可在 `src/index.css` 的 `:root` / `.light` 中调整 CSS 变量（`--c-accent`、`--c-accent-2` 等）。
+
+### 🌐 国际化（i18n）
+
+- **自动检测**：首次访问按 `localStorage` 偏好 → 浏览器 `navigator.languages` → 默认中文 的顺序决定语言；`<html lang>` 在 React 挂载前由内联脚本同步，无闪烁。
+- **一键切换**：导航栏右侧 Globe 按钮（`EN` / `中`），点击即切换，选择写入 `localStorage`（键名 `wys-lang`），刷新 / 重开浏览器保持；多个标签页间自动同步。
+- **新增语言**：在 `src/i18n/ui.js` 与 `src/data/resume.js` 中补对应语言对象，并在 `LanguageContext.jsx` 的 `SUPPORTED` 中登记即可。
+- **冒烟测试**：`npx esbuild scripts/i18n-smoke.jsx --bundle --format=esm --outfile=/tmp/smoke.mjs --jsx=automatic && node /tmp/smoke.mjs` 验证各语言环境下整树渲染。
 
 ## 🐳 Docker 与自动化部署（CI/CD）
 

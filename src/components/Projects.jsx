@@ -1,11 +1,12 @@
 import { motion } from 'framer-motion'
 import { ExternalLink, Sparkles, FolderGit2 } from 'lucide-react'
 import SectionHeading from './ui/SectionHeading'
-import { projects } from '../data/resume'
+import { useLanguage } from '../i18n/LanguageContext'
 
 const ease = [0.16, 1, 0.3, 1]
 
 function ProjectCard({ p, index }) {
+  const { t } = useLanguage()
   const isFeatured = p.featured
 
   return (
@@ -52,7 +53,7 @@ function ProjectCard({ p, index }) {
             rel="noopener noreferrer"
             className="inline-flex shrink-0 items-center gap-1.5 rounded-lg border border-border/70 bg-elevated/40 px-3 py-1.5 text-xs font-medium text-secondary transition-all hover:border-accent/50 hover:text-accent"
           >
-            访问 <ExternalLink className="h-3.5 w-3.5" />
+            {t.projectVisit} <ExternalLink className="h-3.5 w-3.5" />
           </a>
         )}
       </div>
@@ -86,9 +87,9 @@ function ProjectCard({ p, index }) {
 
       {/* 技术标签 */}
       <div className="flex flex-wrap gap-1.5 border-t border-border/50 pt-4">
-        {p.tags.map((t) => (
-          <span key={t} className="chip !px-2 !py-1 text-[11px]">
-            {t}
+        {p.tags.map((tg) => (
+          <span key={tg} className="chip !px-2 !py-1 text-[11px]">
+            {tg}
           </span>
         ))}
       </div>
@@ -97,18 +98,20 @@ function ProjectCard({ p, index }) {
 }
 
 export default function Projects() {
-  const featured = projects.filter((p) => p.featured)
-  const others = projects.filter((p) => !p.featured)
+  const { t, data } = useLanguage()
+  const section = t.sections.projects
+  const featured = data.projects.filter((p) => p.featured)
+  const others = data.projects.filter((p) => !p.featured)
 
   return (
     <section id="projects" className="relative py-20 sm:py-28">
       <div className="container-page">
         <SectionHeading
           icon="rocket"
-          eyebrow="Featured Work"
-          title="精选"
-          highlight="项目作品"
-          desc="覆盖 AI 招聘、复合用工、金融、报表引擎等领域，均以可量化的稳定性与效率成果落地。"
+          eyebrow={section.eyebrow}
+          title={section.title}
+          highlight={section.highlight}
+          desc={section.desc}
         />
 
         {/* 旗舰项目（大卡） */}

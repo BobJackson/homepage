@@ -1,35 +1,56 @@
 import { motion } from 'framer-motion'
 import { MapPin, Briefcase, ArrowDown, Send, Sparkles } from 'lucide-react'
-import { profile, heroStats } from '../data/resume'
+import { useLanguage } from '../i18n/LanguageContext'
 
 const ease = [0.16, 1, 0.3, 1]
 
 /* 终端代码卡片：以 Java 语法呈现候选人「画像」，强化工程师身份 */
 function TerminalCard() {
+  const { lang } = useLanguage()
   const kw = (t) => <span className="text-accent-2">{t}</span>
   const ty = (t) => <span className="text-accent">{t}</span>
   const st = (t) => <span className="text-emerald-700 dark:text-emerald-400">{t}</span>
   const nu = (t) => <span className="text-amber-700 dark:text-amber-400">{t}</span>
   const cm = (t) => <span className="text-muted italic">{t}</span>
 
-  const lines = [
-    <>{kw('public class')} {ty('WangYousong')} &#123;</>,
-    <>&nbsp;&nbsp;{kw('int')} experience = {nu('10')}; {cm('// 年后端 & 架构')}</>,
-    <>&nbsp;&nbsp;{ty('Role')} target = {ty('Role')}.{st('ARCHITECT')}; {cm('// 架构师 / 技术经理')}</>,
-    <></>,
-    <>&nbsp;&nbsp;{ty('String[]')} core = &#123;</>,
-    <>&nbsp;&nbsp;&nbsp;&nbsp;{st('"分布式架构"')}, {st('"高并发"')}, {st('"千万级数据治理"')}</>,
-    <>&nbsp;&nbsp;&#125;;</>,
-    <></>,
-    <>&nbsp;&nbsp;{cm('// AI 工程化落地')}</>,
-    <>&nbsp;&nbsp;{ty('String[]')} ai = &#123;</>,
-    <>&nbsp;&nbsp;&nbsp;&nbsp;{st('"MCP"')}, {st('"Spring AI"')}, {st('"LangChain4j"')}, {st('"Dify"')}</>,
-    <>&nbsp;&nbsp;&#125;;</>,
-    <></>,
-    <>&nbsp;&nbsp;{kw('double')} availability = {nu('0.9995')}; {cm('// 系统可用性')}</>,
-    <>&nbsp;&nbsp;{kw('boolean')} readyToJoin = {nu('true')}; {cm('// 随时到岗')}</>,
-    <>&#125;</>,
-  ]
+  const lines =
+    lang === 'zh'
+      ? [
+          <>{kw('public class')} {ty('WangYousong')} &#123;</>,
+          <>&nbsp;&nbsp;{kw('int')} experience = {nu('10')}; {cm('// 年后端 & 架构')}</>,
+          <>&nbsp;&nbsp;{ty('Role')} target = {ty('Role')}.{st('ARCHITECT')}; {cm('// 架构师 / 技术经理')}</>,
+          <></>,
+          <>&nbsp;&nbsp;{ty('String[]')} core = &#123;</>,
+          <>&nbsp;&nbsp;&nbsp;&nbsp;{st('"分布式架构"')}, {st('"高并发"')}, {st('"千万级数据治理"')}</>,
+          <>&nbsp;&nbsp;&#125;;</>,
+          <></>,
+          <>&nbsp;&nbsp;{cm('// AI 工程化落地')}</>,
+          <>&nbsp;&nbsp;{ty('String[]')} ai = &#123;</>,
+          <>&nbsp;&nbsp;&nbsp;&nbsp;{st('"MCP"')}, {st('"Spring AI"')}, {st('"LangChain4j"')}, {st('"Dify"')}</>,
+          <>&nbsp;&nbsp;&#125;;</>,
+          <></>,
+          <>&nbsp;&nbsp;{kw('double')} availability = {nu('0.9995')}; {cm('// 系统可用性')}</>,
+          <>&nbsp;&nbsp;{kw('boolean')} readyToJoin = {nu('true')}; {cm('// 随时到岗')}</>,
+          <>&#125;</>,
+        ]
+      : [
+          <>{kw('public class')} {ty('WangYousong')} &#123;</>,
+          <>&nbsp;&nbsp;{kw('int')} experience = {nu('10')}; {cm('// yrs of backend & architecture')}</>,
+          <>&nbsp;&nbsp;{ty('Role')} target = {ty('Role')}.{st('ARCHITECT')}; {cm('// architect / engineering manager')}</>,
+          <></>,
+          <>&nbsp;&nbsp;{ty('String[]')} core = &#123;</>,
+          <>&nbsp;&nbsp;&nbsp;&nbsp;{st('"Distributed architecture"')}, {st('"High concurrency"')}, {st('"10M+ data governance"')}</>,
+          <>&nbsp;&nbsp;&#125;;</>,
+          <></>,
+          <>&nbsp;&nbsp;{cm('// AI engineering in production')}</>,
+          <>&nbsp;&nbsp;{ty('String[]')} ai = &#123;</>,
+          <>&nbsp;&nbsp;&nbsp;&nbsp;{st('"MCP"')}, {st('"Spring AI"')}, {st('"LangChain4j"')}, {st('"Dify"')}</>,
+          <>&nbsp;&nbsp;&#125;;</>,
+          <></>,
+          <>&nbsp;&nbsp;{kw('double')} availability = {nu('0.9995')}; {cm('// system availability')}</>,
+          <>&nbsp;&nbsp;{kw('boolean')} readyToJoin = {nu('true')}; {cm('// available immediately')}</>,
+          <>&#125;</>,
+        ]
 
   return (
     <motion.div
@@ -71,6 +92,8 @@ function TerminalCard() {
 }
 
 export default function Hero() {
+  const { t, data } = useLanguage()
+  const { profile, heroStats } = data
   const scrollTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
 
   return (
@@ -127,10 +150,11 @@ export default function Hero() {
                 <MapPin className="h-4 w-4 text-accent" /> {profile.location}
               </span>
               <span className="inline-flex items-center gap-1.5 rounded-lg border border-border/70 bg-elevated/40 px-3 py-1.5 text-secondary">
-                <Briefcase className="h-4 w-4 text-accent" /> {profile.experienceYears} 年经验 · {profile.education}
+                <Briefcase className="h-4 w-4 text-accent" /> {profile.experienceYears} {t.heroYearExp} · {profile.education}
               </span>
               <span className="inline-flex items-center gap-1.5 rounded-lg border border-accent/30 bg-accent/5 px-3 py-1.5 font-medium text-accent">
-                期望 {profile.expectations.salary}
+                {t.heroExpectPrefix}
+                {profile.expectations.salary}
               </span>
             </motion.div>
 
@@ -142,10 +166,10 @@ export default function Hero() {
               className="mt-8 flex flex-wrap items-center gap-3"
             >
               <button onClick={() => scrollTo('projects')} className="btn-primary">
-                <Briefcase className="h-4 w-4" /> 查看精选项目
+                <Briefcase className="h-4 w-4" /> {t.heroCtaPrimary}
               </button>
               <button onClick={() => scrollTo('contact')} className="btn-ghost">
-                <Send className="h-4 w-4" /> 联系我
+                <Send className="h-4 w-4" /> {t.heroCtaSecondary}
               </button>
             </motion.div>
           </div>
@@ -186,9 +210,9 @@ export default function Hero() {
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2, duration: 0.6 }}
           className="mx-auto mt-14 flex flex-col items-center gap-1.5 text-muted transition-colors hover:text-accent"
-          aria-label="向下滚动"
+          aria-label={t.scrollDownAria}
         >
-          <span className="text-[11px] uppercase tracking-widest">AI 素养</span>
+          <span className="text-[11px] uppercase tracking-widest">{t.heroScrollHint}</span>
           <ArrowDown className="h-4 w-4 animate-bounce" />
         </motion.button>
       </div>

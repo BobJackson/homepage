@@ -1,7 +1,9 @@
 import { ArrowUp, Heart } from 'lucide-react'
-import { profile, navItems } from '../data/resume'
+import { useLanguage } from '../i18n/LanguageContext'
 
 export default function Footer() {
+  const { t, data } = useLanguage()
+  const { profile, navItems } = data
   const year = new Date().getFullYear()
 
   const go = (id) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
@@ -39,16 +41,16 @@ export default function Footer() {
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             className="inline-flex items-center gap-1.5 rounded-lg border border-border/70 bg-elevated/40 px-3 py-2 text-xs text-secondary transition-all hover:border-accent/50 hover:text-accent"
           >
-            <ArrowUp className="h-3.5 w-3.5" /> 回到顶部
+            <ArrowUp className="h-3.5 w-3.5" /> {t.footerBackToTop}
           </button>
         </div>
 
         <div className="mt-8 flex flex-col items-center gap-1 border-t border-border/50 pt-6 text-center text-[11px] text-muted sm:flex-row sm:justify-between sm:text-left">
           <p>
-            © {year} {profile.name} · 保留所有权利
+            © {year} {profile.name} · {t.footerRights}
           </p>
           <p className="inline-flex items-center gap-1">
-            以 React + Vite 构建，用 <Heart className="h-3 w-3 text-accent" /> 打磨细节
+            {t.footerCredit} <Heart className="h-3 w-3 text-accent" /> {t.footerCreditTail}
           </p>
         </div>
       </div>

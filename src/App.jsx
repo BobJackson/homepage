@@ -1,3 +1,4 @@
+import { LanguageProvider } from './i18n/LanguageContext'
 import useTheme from './hooks/useTheme'
 import Background from './components/Background'
 import Navbar from './components/Navbar'
@@ -15,20 +16,22 @@ export default function App() {
   const { isDark, toggle } = useTheme()
 
   return (
-    <div className="relative min-h-screen">
-      <Background />
-      <Navbar isDark={isDark} toggleTheme={toggle} />
-      <main>
-        <Hero />
-        <AILiteracy />
-        <Advantages />
-        <Skills />
-        <Experience />
-        <Projects />
-        <EducationCert />
-        <Contact />
-      </main>
-      <Footer />
-    </div>
+    <LanguageProvider>
+      <div className="relative min-h-screen">
+        <Background />
+        <Navbar isDark={isDark} toggleTheme={toggle} />
+        <main>
+          <Hero />
+          <AILiteracy />
+          <Advantages />
+          <Skills />
+          <Experience />
+          <Projects />
+          <EducationCert />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
+    </LanguageProvider>
   )
 }

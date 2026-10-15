@@ -2,19 +2,23 @@ import { motion } from 'framer-motion'
 import { GraduationCap, Award, CalendarDays } from 'lucide-react'
 import SectionHeading from './ui/SectionHeading'
 import Icon from './ui/Icon'
-import { education, certifications } from '../data/resume'
+import { useLanguage } from '../i18n/LanguageContext'
 
 const ease = [0.16, 1, 0.3, 1]
 
 export default function EducationCert() {
+  const { t, data } = useLanguage()
+  const section = t.sections.education
+  const { education, certifications } = data
+
   return (
     <section id="education" className="relative py-20 sm:py-24">
       <div className="container-page">
         <SectionHeading
           icon="graduation"
-          eyebrow="Education & Certs"
-          title="教育背景"
-          highlight="与资格证书"
+          eyebrow={section.eyebrow}
+          title={section.title}
+          highlight={section.highlight}
         />
 
         <div className="grid gap-5 lg:grid-cols-[1.4fr_1fr]">
@@ -63,7 +67,7 @@ export default function EducationCert() {
               <span className="grid h-11 w-11 place-items-center rounded-xl border border-accent/30 bg-accent/10 text-accent">
                 <Award className="h-5 w-5" />
               </span>
-              <h3 className="text-lg font-semibold text-primary">资格证书</h3>
+              <h3 className="text-lg font-semibold text-primary">{t.certTitle}</h3>
             </div>
             <div className="flex flex-1 flex-col gap-3">
               {certifications.map((c) => (
@@ -75,9 +79,7 @@ export default function EducationCert() {
                   <span className="text-sm font-medium text-primary">{c.name}</span>
                 </div>
               ))}
-              <p className="mt-auto text-xs leading-relaxed text-muted">
-                持续学习现代 JDK（21/25/26）特性、AI 工程化与分布式架构，保持技术敏感度与工程实践的前沿性。
-              </p>
+              <p className="mt-auto text-xs leading-relaxed text-muted">{t.certNote}</p>
             </div>
           </motion.div>
         </div>

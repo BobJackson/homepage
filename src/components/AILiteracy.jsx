@@ -3,20 +3,24 @@ import { Bot } from 'lucide-react'
 import SectionHeading from './ui/SectionHeading'
 import Reveal from './ui/Reveal'
 import Icon from './ui/Icon'
-import { aiLiteracy } from '../data/resume'
+import { useLanguage } from '../i18n/LanguageContext'
 
 const ease = [0.16, 1, 0.3, 1]
 
 export default function AILiteracy() {
+  const { t, data } = useLanguage()
+  const section = t.sections.ai
+  const { aiLiteracy } = data
+
   return (
     <section id="ai" className="relative py-20 sm:py-28">
       <div className="container-page">
         <SectionHeading
           icon="sparkles"
-          eyebrow="AI Literacy · 核心竞争力"
-          title="AI 时代的"
-          highlight="工程化落地能力"
-          desc="不止步于概念，而是把大模型能力稳定、可控地嵌入企业级系统，转化为可量化的业务价值。"
+          eyebrow={section.eyebrow}
+          title={section.title}
+          highlight={section.highlight}
+          desc={section.desc}
         />
 
         {/* 主视觉面板 */}

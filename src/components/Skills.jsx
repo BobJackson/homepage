@@ -1,20 +1,24 @@
 import { motion } from 'framer-motion'
 import SectionHeading from './ui/SectionHeading'
 import Icon from './ui/Icon'
-import { skills } from '../data/resume'
+import { useLanguage } from '../i18n/LanguageContext'
 
 const ease = [0.16, 1, 0.3, 1]
 
 export default function Skills() {
+  const { t, data } = useLanguage()
+  const section = t.sections.skills
+  const { skills } = data
+
   return (
     <section id="skills" className="relative py-20 sm:py-28">
       <div className="container-page">
         <SectionHeading
           icon="layers"
-          eyebrow="Tech Stack"
-          title="技术"
-          highlight="技能栈"
-          desc="从后端核心到 AI 工程化，覆盖架构设计、性能优化与工程效能的完整能力矩阵。"
+          eyebrow={section.eyebrow}
+          title={section.title}
+          highlight={section.highlight}
+          desc={section.desc}
         />
 
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
@@ -33,7 +37,7 @@ export default function Skills() {
             >
               {group.highlight && (
                 <span className="absolute right-4 top-4 rounded-full border border-accent/40 bg-accent/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-accent">
-                  Highlight
+                  {t.skillsHighlightBadge}
                 </span>
               )}
               <div className="mb-4 flex items-center gap-3">

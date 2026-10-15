@@ -1,20 +1,24 @@
 import { motion } from 'framer-motion'
 import { Building2, CalendarDays } from 'lucide-react'
 import SectionHeading from './ui/SectionHeading'
-import { experience } from '../data/resume'
+import { useLanguage } from '../i18n/LanguageContext'
 
 const ease = [0.16, 1, 0.3, 1]
 
 export default function Experience() {
+  const { t, data } = useLanguage()
+  const section = t.sections.experience
+  const { experience } = data
+
   return (
     <section id="experience" className="relative py-20 sm:py-28">
       <div className="container-page">
         <SectionHeading
           icon="briefcase"
-          eyebrow="Career Path"
-          title="职业"
-          highlight="工作经历"
-          desc="10 年成长轨迹：从后端开发到技术经理，持续在核心系统中承担架构设计与攻坚职责。"
+          eyebrow={section.eyebrow}
+          title={section.title}
+          highlight={section.highlight}
+          desc={section.desc}
         />
 
         <div className="relative">
@@ -66,9 +70,9 @@ export default function Experience() {
 
                   {/* 标签 */}
                   <div className="mt-4 flex flex-wrap gap-1.5">
-                    {job.tags.map((t) => (
-                      <span key={t} className="chip !px-2 !py-1 text-[11px]">
-                        {t}
+                    {job.tags.map((tg) => (
+                      <span key={tg} className="chip !px-2 !py-1 text-[11px]">
+                        {tg}
                       </span>
                     ))}
                   </div>

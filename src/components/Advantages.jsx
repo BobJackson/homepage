@@ -1,20 +1,24 @@
 import { motion } from 'framer-motion'
 import SectionHeading from './ui/SectionHeading'
 import Icon from './ui/Icon'
-import { advantages } from '../data/resume'
+import { useLanguage } from '../i18n/LanguageContext'
 
 const ease = [0.16, 1, 0.3, 1]
 
 export default function Advantages() {
+  const { t, data } = useLanguage()
+  const section = t.sections.advantages
+  const { advantages } = data
+
   return (
     <section id="advantages" className="relative py-20 sm:py-28">
       <div className="container-page">
         <SectionHeading
           icon="target"
-          eyebrow="Why Me"
-          title="四大"
-          highlight="核心优势"
-          desc="技术深度、AI 视野、工程标准与协作能力，构成可交付、可衡量、可持续的复合竞争力。"
+          eyebrow={section.eyebrow}
+          title={section.title}
+          highlight={section.highlight}
+          desc={section.desc}
         />
 
         <div className="grid gap-5 md:grid-cols-2">

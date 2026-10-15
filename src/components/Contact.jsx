@@ -2,11 +2,12 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Phone, Mail, MessageCircle, MapPin, Check, Copy, Briefcase, Banknote, Clock } from 'lucide-react'
 import SectionHeading from './ui/SectionHeading'
-import { profile } from '../data/resume'
+import { useLanguage } from '../i18n/LanguageContext'
 
 const ease = [0.16, 1, 0.3, 1]
 
 function CopyButton({ value }) {
+  const { t } = useLanguage()
   const [copied, setCopied] = useState(false)
   const onCopy = async () => {
     try {
@@ -20,7 +21,7 @@ function CopyButton({ value }) {
   return (
     <button
       onClick={onCopy}
-      aria-label="复制"
+      aria-label={t.copyAria}
       className="grid h-8 w-8 shrink-0 place-items-center rounded-lg border border-border/70 bg-elevated/40 text-muted transition-all hover:border-accent/50 hover:text-accent"
     >
       {copied ? <Check className="h-4 w-4 text-emerald-700 dark:text-emerald-400" /> : <Copy className="h-4 w-4" />}
@@ -29,12 +30,14 @@ function CopyButton({ value }) {
 }
 
 export default function Contact() {
-  const { contact, expectations } = profile
+  const { t, data } = useLanguage()
+  const section = t.sections.contact
+  const { contact, expectations } = data.profile
 
   const channels = [
-    { icon: Phone, label: '电话', value: contact.phone, href: `tel:${contact.phone}` },
-    { icon: Mail, label: '邮箱', value: contact.email, href: `mailto:${contact.email}` },
-    { icon: MessageCircle, label: '微信', value: contact.wechat, href: null },
+    { icon: Phone, label: t.channelPhone, value: contact.phone, href: `tel:${contact.phone}` },
+    { icon: Mail, label: t.channelEmail, value: contact.email, href: `mailto:${contact.email}` },
+    { icon: MessageCircle, label: t.channelWechat, value: contact.wechat, href: null },
   ]
 
   return (
@@ -42,10 +45,10 @@ export default function Contact() {
       <div className="container-page">
         <SectionHeading
           icon="send"
-          eyebrow="Get In Touch"
-          title="期待与你"
-          highlight="进一步交流"
-          desc="目前处于离职状态，可随时到岗。若贵司正在寻找兼具架构深度与 AI 工程化落地能力的技术负责人，欢迎联系。"
+          eyebrow={section.eyebrow}
+          title={section.title}
+          highlight={section.highlight}
+          desc={section.desc}
         />
 
         <div className="grid gap-5 lg:grid-cols-[1.15fr_1fr]">
@@ -59,7 +62,7 @@ export default function Contact() {
           >
             <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-accent to-accent-2" />
             <div className="p-6 sm:p-8">
-              <h3 className="mb-5 text-lg font-semibold text-primary">联系方式</h3>
+              <h3 className="mb-5 text-lg font-semibold text-primary">{t.contactTitle}</h3>
               <div className="flex flex-col gap-3">
                 {channels.map((c) => (
                   <div
@@ -100,7 +103,7 @@ export default function Contact() {
             <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-accent-2 to-accent" />
             <div className="p-6 sm:p-8">
               <h3 className="mb-5 flex items-center gap-2 text-lg font-semibold text-primary">
-                <Briefcase className="h-5 w-5 text-accent" /> 期望职位
+                <Briefcase className="h-5 w-5 text-accent" /> {t.contactRolesTitle}
               </h3>
 
               <div className="mb-5 flex flex-wrap gap-2">
@@ -117,18 +120,18 @@ export default function Contact() {
               <div className="grid gap-3 sm:grid-cols-3">
                 <div className="rounded-xl border border-border/60 bg-elevated/40 p-3.5">
                   <MapPin className="mb-2 h-4 w-4 text-accent" />
-                  <div className="text-[11px] text-muted">期望城市</div>
+                  <div className="text-[11px] text-muted">{t.contactCity}</div>
                   <div className="text-sm font-semibold text-primary">{expectations.city}</div>
                 </div>
                 <div className="rounded-xl border border-border/60 bg-elevated/40 p-3.5">
                   <Banknote className="mb-2 h-4 w-4 text-accent" />
-                  <div className="text-[11px] text-muted">期望薪资</div>
+                  <div className="text-[11px] text-muted">{t.contactSalary}</div>
                   <div className="text-sm font-semibold text-primary">{expectations.salary}</div>
                 </div>
                 <div className="rounded-xl border border-border/60 bg-elevated/40 p-3.5">
                   <Clock className="mb-2 h-4 w-4 text-accent" />
-                  <div className="text-[11px] text-muted">到岗时间</div>
-                  <div className="text-sm font-semibold text-primary">随时到岗</div>
+                  <div className="text-[11px] text-muted">{t.contactAvailability}</div>
+                  <div className="text-sm font-semibold text-primary">{t.contactAvailabilityValue}</div>
                 </div>
               </div>
 
@@ -138,7 +141,7 @@ export default function Contact() {
                   <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500 dark:bg-emerald-400" />
                 </span>
                 <span className="text-sm font-medium text-emerald-700 dark:text-emerald-400">
-                  {expectations.type} · {profile.status}
+                  {expectations.type} · {data.profile.status}
                 </span>
               </div>
             </div>
