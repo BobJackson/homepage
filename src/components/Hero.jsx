@@ -17,37 +17,41 @@ function TerminalCard() {
     lang === 'zh'
       ? [
           <>{kw('public class')} {ty('WangYousong')} &#123;</>,
-          <>&nbsp;&nbsp;{kw('int')} experience = {nu('10')}; {cm('// 年后端 & 架构')}</>,
-          <>&nbsp;&nbsp;{ty('Role')} target = {ty('Role')}.{st('ARCHITECT')}; {cm('// 架构师 / 技术经理')}</>,
+          <>&nbsp;&nbsp;{kw('int')} experience = {nu('10')}; {cm('// 年后端 / 平台建设')}</>,
+          <>&nbsp;&nbsp;{ty('Role')} target = {ty('Role')}.{st('SENIOR_BACKEND')}; {cm('// 资深后端')}</>,
           <></>,
-          <>&nbsp;&nbsp;{ty('String[]')} core = &#123;</>,
-          <>&nbsp;&nbsp;&nbsp;&nbsp;{st('"分布式架构"')}, {st('"高并发"')}, {st('"千万级数据治理"')}</>,
+          <>&nbsp;&nbsp;{cm('// 三次平台级系统 0→1')}</>,
+          <>&nbsp;&nbsp;{ty('String[]')} built = &#123;</>,
+          <>&nbsp;&nbsp;&nbsp;&nbsp;{st('"OfferDatahub"')}, {st('"OfferTimeManage"')}, {st('"OfferReport"')}</>,
           <>&nbsp;&nbsp;&#125;;</>,
           <></>,
-          <>&nbsp;&nbsp;{cm('// AI 工程化落地')}</>,
-          <>&nbsp;&nbsp;{ty('String[]')} ai = &#123;</>,
-          <>&nbsp;&nbsp;&nbsp;&nbsp;{st('"MCP"')}, {st('"Spring AI"')}, {st('"LangChain4j"')}, {st('"Dify"')}</>,
-          <>&nbsp;&nbsp;&#125;;</>,
+          <>&nbsp;&nbsp;{cm('// 一条抽象主线：变化点外置')}</>,
+          <>&nbsp;&nbsp;{ty('Principle')} p = {ty('Principle')}.{st('EXTERNALIZE_CHANGE_POINTS')};</>,
           <></>,
-          <>&nbsp;&nbsp;{kw('double')} availability = {nu('0.9995')}; {cm('// 系统可用性')}</>,
+          <>&nbsp;&nbsp;{cm('// LLM 的边界：生成与计算分离')}</>,
+          <>&nbsp;&nbsp;{ty('AiContract')} ai = {ty('AiContract')}.{st('llmGenerates')}()</>,
+          <>&nbsp;&nbsp;&nbsp;&nbsp;.{st('ruleEngineComputes')}();</>,
+          <></>,
           <>&nbsp;&nbsp;{kw('boolean')} readyToJoin = {nu('true')}; {cm('// 随时到岗')}</>,
           <>&#125;</>,
         ]
       : [
           <>{kw('public class')} {ty('WangYousong')} &#123;</>,
-          <>&nbsp;&nbsp;{kw('int')} experience = {nu('10')}; {cm('// yrs of backend & architecture')}</>,
-          <>&nbsp;&nbsp;{ty('Role')} target = {ty('Role')}.{st('ARCHITECT')}; {cm('// architect / engineering manager')}</>,
+          <>&nbsp;&nbsp;{kw('int')} experience = {nu('10')}; {cm('// yrs of backend & platform')}</>,
+          <>&nbsp;&nbsp;{ty('Role')} target = {ty('Role')}.{st('SENIOR_BACKEND')}; {cm('// senior backend')}</>,
           <></>,
-          <>&nbsp;&nbsp;{ty('String[]')} core = &#123;</>,
-          <>&nbsp;&nbsp;&nbsp;&nbsp;{st('"Distributed architecture"')}, {st('"High concurrency"')}, {st('"10M+ data governance"')}</>,
+          <>&nbsp;&nbsp;{cm('// three platform builds from zero')}</>,
+          <>&nbsp;&nbsp;{ty('String[]')} built = &#123;</>,
+          <>&nbsp;&nbsp;&nbsp;&nbsp;{st('"OfferDatahub"')}, {st('"OfferTimeManage"')}, {st('"OfferReport"')}</>,
           <>&nbsp;&nbsp;&#125;;</>,
           <></>,
-          <>&nbsp;&nbsp;{cm('// AI engineering in production')}</>,
-          <>&nbsp;&nbsp;{ty('String[]')} ai = &#123;</>,
-          <>&nbsp;&nbsp;&nbsp;&nbsp;{st('"MCP"')}, {st('"Spring AI"')}, {st('"LangChain4j"')}, {st('"Dify"')}</>,
-          <>&nbsp;&nbsp;&#125;;</>,
+          <>&nbsp;&nbsp;{cm('// one abstraction thread: externalise changes')}</>,
+          <>&nbsp;&nbsp;{ty('Principle')} p = {ty('Principle')}.{st('EXTERNALIZE_CHANGE_POINTS')};</>,
           <></>,
-          <>&nbsp;&nbsp;{kw('double')} availability = {nu('0.9995')}; {cm('// system availability')}</>,
+          <>&nbsp;&nbsp;{cm('// the LLM boundary: generate vs. compute')}</>,
+          <>&nbsp;&nbsp;{ty('AiContract')} ai = {ty('AiContract')}.{st('llmGenerates')}()</>,
+          <>&nbsp;&nbsp;&nbsp;&nbsp;.{st('ruleEngineComputes')}();</>,
+          <></>,
           <>&nbsp;&nbsp;{kw('boolean')} readyToJoin = {nu('true')}; {cm('// available immediately')}</>,
           <>&#125;</>,
         ]
@@ -57,7 +61,7 @@ function TerminalCard() {
       initial={{ opacity: 0, y: 28, rotate: 1.5 }}
       animate={{ opacity: 1, y: 0, rotate: 0 }}
       transition={{ duration: 0.8, delay: 0.35, ease }}
-      className="relative"
+      className="relative min-w-0"
     >
       {/* 背后光晕 */}
       <div className="absolute -inset-4 -z-10 rounded-3xl bg-gradient-to-tr from-accent/20 via-transparent to-accent-2/20 blur-2xl" />
@@ -101,7 +105,7 @@ export default function Hero() {
       <div className="container-page">
         <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10">
           {/* 左侧：价值主张 */}
-          <div>
+          <div className="min-w-0">
             {/* 状态徽标 */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
@@ -175,7 +179,7 @@ export default function Hero() {
           </div>
 
           {/* 右侧：终端卡片 */}
-          <div className="lg:pl-4">
+          <div className="min-w-0 lg:pl-4">
             <TerminalCard />
           </div>
         </div>

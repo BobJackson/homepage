@@ -1,6 +1,7 @@
 /**
  * 简历结构化数据 · 中英双语
- * 原则：量化成果前置、关键词可扫读、AI 工程化能力单独凸显
+ * 原则：事实与可核查数字前置、关键词可扫读、抽象主线与 AI 工程化单列
+ * 数字口径：均来自 git 提交记录 / 代码审计（详见桌面临历文档），不使用无法验证的业务指标
  * 语言切换见 src/i18n/LanguageContext.jsx（localStorage 持久化）
  */
 
@@ -8,9 +9,10 @@ const zh = {
   profile: {
     name: '王幼松',
     nameEn: 'Wang Yousong',
-    title: 'Java 架构师 / 技术经理',
+    title: '资深 Java 后端 / 平台架构',
     // 一句话价值主张（首屏大标题下方）
-    tagline: '10 年 Java 后端与架构经验，专注高并发分布式系统与千万级数据治理；主导 MCP、Spring AI、LangChain4j 等大模型能力的企业级工程化落地，用 AI 重构传统业务流程。',
+    tagline:
+      '专注平台级系统从 0 到 1 建设的后端工程师：三次把平台从零建成（组织人事 CDC 数据中心、考勤微服务、Trino 报表引擎），方法论是把业务变化点外置为配置与可插拔单元，用位点、幂等与状态机把外部不确定性收敛成业务确定性。5 个项目拼成一条 HR SaaS 全链路，近一年把大模型接进这条链。',
     location: '上海',
     status: '离职 · 随时到岗',
     experienceYears: 10,
@@ -24,110 +26,110 @@ const zh = {
       type: '全职',
       city: '上海',
       salary: '35–40K',
-      roles: ['架构师', '技术经理', 'Java 高级/资深工程师'],
+      roles: ['资深 / 专家 Java 后端', '后端架构师', '技术经理'],
     },
   },
 
-  /** 首屏核心数据 —— 招聘者 3 秒抓住价值 */
+  /** 首屏核心数据 —— 招聘者 3 秒抓住价值（均可回溯到提交记录） */
   heroStats: [
-    { value: '10', suffix: '年+', label: 'Java 后端 / 架构经验' },
-    { value: '1300', suffix: '万+', label: '数据平滑迁移与架构优化' },
-    { value: '99.95', suffix: '%', label: '核心系统可用性（99.5%→99.95%）' },
-    { value: '60', suffix: '%+', label: '算薪自动化节省人力成本' },
+    { value: '10', suffix: '年+', label: 'Java 后端 / 平台建设经验' },
+    { value: '3', suffix: '次', label: '平台级系统 0→1 从零建设' },
+    { value: '123', suffix: '个', label: '主服务主干 Java 文件 100% 本人首次引入' },
+    { value: '5', suffix: '环节', label: 'HR SaaS 全链路：人事数据 → 考勤 → 绩效 → 招聘 → 报表' },
   ],
 
-  /** AI 素养专区 —— 核心竞争力差异化模块 */
+  /** AI 素养专区 —— 不讲 API 名词，讲 LLM 的边界与工程化判断 */
   aiLiteracy: {
-    lead: '不止会调用大模型，更懂如何把 AI 稳定、可控地嵌入企业级系统。从协议层（MCP）到应用框架（Spring AI / LangChain4j），再到业务落地（智能招聘、LUI 查询），我负责让 AI 真正产生业务价值。',
+    lead: '不神化大模型，先给它划边界：LLM 负责生成、规则引擎负责计算；把慢且不确定的模型调用，用超时、熔断与幂等键包起来，再接进有事务、有状态、有幂等要求的存量系统 —— 我解决的是 AI 落地的「最后一公里」工程问题，而不是 demo 问题。',
     capabilities: [
       {
-        icon: 'plug',
-        title: 'MCP 协议实践',
-        tag: 'Model Context Protocol',
-        desc: '深入实践 MCP，标准化大模型与外部工具 / 数据源的上下文交互，为 Agent 能力接入企业系统打通「最后一公里」。',
-        points: ['工具 / 上下文标准化接入', 'Agent 与企业服务解耦', '可扩展的能力编排'],
+        icon: 'target',
+        title: 'LLM 边界划分',
+        tag: 'LLM 生成 · 规则引擎计算',
+        desc: '明确「大模型负责生成、规则引擎负责计算」：把不适合交给大模型的高精度金额计算，交给 QLExpress4 可配置表达式，并用策略模式解耦「参数准备」与「规则执行」，支持按月份维度计算。',
+        points: ['职责分工判断', 'QLExpress4 表达式算薪', '策略模式解耦参数与执行'],
       },
       {
-        icon: 'brain',
-        title: '企业级大模型集成',
-        tag: 'Spring AI · LangChain4j',
-        desc: '在 Spring 生态中集成大模型能力，落地 RAG 检索增强、Function Calling 工具调用与 Prompt 工程，兼顾稳定性与成本。',
-        points: ['RAG 检索增强生成', 'Function Calling / 工具调用', 'Prompt 工程与效果调优'],
+        icon: 'workflow',
+        title: 'Dify 编排与 AIGC 业务化',
+        tag: 'Dify · Workflow · 流式响应',
+        desc: '基于 dify-api-java-sdk 打通多个 Dify 应用（含 workflow），实现流式响应与全事件解析；调用 Dify 自动生成闲鱼岗位标题与描述，配套敏感词过滤、emoji 检测与报名用户名清洗，让 AI 生成内容可直接投放第三方渠道。',
+        points: ['workflow 全事件解析', '流式响应与多轮会话', 'AIGC 内容可直接投放'],
+      },
+      {
+        icon: 'shield',
+        title: 'LLM 不确定性收敛',
+        tag: '超时 · 熔断 · 幂等',
+        desc: '定位并解决 Dify 超时导致企微重复推送的线上问题：回调超时收敛至 15 秒、增加 Dify 调用熔断开关防止服务过载，并基于 Redisson RBucket 设计幂等键（processedTxtMsg / conversationFeedbackPushed）实现消息去重与「单会话仅推送一次反馈」。',
+        points: ['15s 超时收敛', '熔断开关防过载', 'Redisson 幂等键去重'],
       },
       {
         icon: 'bot',
-        title: 'AI Agent 与工作流',
-        tag: 'Dify · 企业微信机器人',
-        desc: '集成 Dify AI 平台与企业微信智能机器人，实现岗位智能搜索、自动邀约发送与用户反馈收集，显著优化招聘流程。',
-        points: ['岗位智能搜索', '自动邀约与反馈闭环', '招聘效率与候选人体验双升'],
-      },
-      {
-        icon: 'sparkles',
-        title: '智能化业务落地',
-        tag: 'LUI · AI 招募',
-        desc: '主导 LUI 智能查询系统与 AI 招募平台，用自然语言交互升级传统业务流程，支撑日均 5000+ 岗位发布与全链路数字化。',
-        points: ['自然语言查询（LUI）', 'AI 驱动智能招聘', '自动化薪酬核算全链路'],
+        title: '会话桥接与反馈闭环',
+        tag: 'conversationId · 企业微信',
+        desc: '企微回调是无状态的、大模型要多轮会话 —— 设计 conversationId 生命周期管理（Redis 缓存 + TTL）把两者映射起来；落地 WXBizJsonMsgCrypt AES 加解密与卡片渲染，搭建用户评价收集机制，为模型效果建立线上反馈闭环。',
+        points: ['会话状态桥接', '卡片交互与加解密', '回答质量反馈闭环'],
       },
     ],
     metrics: [
-      { value: '5000+', label: '日均岗位稳定发布' },
-      { value: '2万+', label: '月处理薪酬账单' },
-      { value: '10万+', label: '服务月活用户' },
-      { value: '6000+', label: '自动化引流报名用户' },
+      { value: '15s', label: 'LLM 回调超时收敛 + 熔断开关' },
+      { value: '4 类', label: 'workflow 事件全链路解析' },
+      { value: '201', label: '个新增 Java 类（4 个月交付）' },
+      { value: '58', label: '个需求工单 · 554 次提交' },
     ],
   },
 
-  /** 核心优势 —— 由「个人优势」提炼 */
+  /** 核心优势 —— 由「三次 0→1 + 抽象主线 + 不确定性收敛 + 领域纵深」提炼 */
   advantages: [
     {
-      icon: 'cpu',
-      title: '深厚后端与架构功底',
-      desc: '10 年 Java 后端经验，深入掌握现代 JDK（21/25/26）特性与底层原理；擅长 Spring Boot 性能优化，独立主导 1300 万+ 数据平滑迁移，以微服务与分布式架构攻克高并发瓶颈。',
+      icon: 'rocket',
+      title: '平台级系统 0→1 建设能力',
+      desc: '5 个项目中 2 个从工程初始化提交（add gitignore / add README）开始，1 个主导从零搭建期；OfferDatahub 主服务主干 123 个 Java 文件全部由本人首次引入 ——「从零」是可核查的事实，不是形容词。',
     },
     {
-      icon: 'sparkles',
-      title: 'AI 工程化前瞻落地',
-      desc: '在 AI 工程化方面具备前瞻视野与实战能力，深入实践 MCP、LangChain4j、Spring AI，主导大模型能力集成至企业级应用（如 LUI 智能查询），实现传统业务流程智能化升级。',
+      icon: 'layers',
+      title: '把变化点外置的抽象主线',
+      desc: '同一个动作在 5 个项目里重复了 5 次：报表 SQL 拆成 7 个子句构建器 + 20+ 算子、变更记录翻译抽成元数据配置、考勤与算薪规则抽成表达式、导入校验抽成 Checker 链。结果：加算子 = 加一个类、接新表 = 只配数据、加校验 = 加一个 Checker、改规则 = 改配置。',
     },
     {
       icon: 'shield',
-      title: '高质量工程标准',
-      desc: '熟练运用 DDD 应对复杂业务建模，提升可维护性与扩展性；推行标准化、自动化的本地开发工程化实践，结合 TDD 与持续重构，显著提升交付效率与协作质量。',
+      title: '数据密集链路的不确定性收敛',
+      desc: '反复处理同一类难题：上游给的是「至少一次、可能超时、可能重复」，业务要的是「不重不丢」。做法三层 —— 位点水位 / 幂等键在源头拦截、中间重试、唯一约束兜底；配合 @Async 拆解消费与计算线程、状态机约束并发写，LLM 的超时与重复推送同样用这套方法收敛。',
     },
     {
-      icon: 'users',
-      title: '技术洞察与跨部门协同',
-      desc: '在初创及收缩期团队担任核心开发，精准对齐业务目标与技术架构；关注方案对成本与运营效率的实际影响，能清晰表达复杂技术方案，推动团队与业务高效协作。',
+      icon: 'database',
+      title: 'HR SaaS 全链路领域纵深',
+      desc: '组织人事主数据 → 考勤 → 绩效 → 招聘 → 报表消费，五个环节都有实际建设经验，并清楚它们之间的接口：考勤月报口径如何喂给薪酬核算、绩效如何依赖组织主数据、招聘线索如何落到员工生命周期。领域知识不可速成。',
     },
   ],
 
-  /** 技能栈 —— 分类呈现 */
+  /** 技能栈 —— 分类呈现（以项目实际使用为准） */
   skills: [
     {
       category: '后端核心',
       icon: 'code',
-      items: ['Java (JDK 21/25/26)', 'Spring Boot', 'Spring Cloud', 'Dubbo', 'MyBatis-Plus', 'JPA'],
+      items: ['Java (8 / 21)', 'Spring Boot 2 & 3', 'Dubbo', 'MyBatis-Plus', 'Sa-Token', 'spring-retry', 'Hutool'],
     },
     {
       category: '架构与中间件',
       icon: 'layers',
-      items: ['微服务架构', '分布式系统', 'DDD 领域驱动', 'RabbitMQ', 'Redis / Redisson', 'XXL-Job', 'Flowable 工作流'],
+      items: ['微服务 / ACL 防腐层', 'DDD 领域建模', '规则引擎（QLExpress4）', 'RabbitMQ', 'Redis / Redisson', 'XXL-Job', 'Flowable', 'Guava Cache'],
     },
     {
       category: '数据与存储',
       icon: 'database',
-      items: ['PostgreSQL', 'PolarDB', 'MySQL', 'Trino 联邦查询', 'NoSQL', '阿里云 OSS / DTS'],
+      items: ['PostgreSQL / JSONB', 'ClickHouse', 'Trino 联邦查询', 'MySQL', 'MongoDB', '阿里云 DTS 数据订阅'],
     },
     {
       category: 'AI 工程化',
       icon: 'sparkles',
       highlight: true,
-      items: ['MCP', 'Spring AI', 'LangChain4j', 'Dify', 'RAG', 'Function Calling', 'Prompt 工程'],
+      items: ['Dify / Workflow', 'Prompt 工程', 'LLM 超时 / 熔断 / 幂等', 'MCP', 'Spring AI', 'LangChain4j', 'RAG'],
     },
     {
       category: '工程实践与 DevOps',
       icon: 'git',
-      items: ['TDD 测试驱动', 'CI/CD', 'Docker', '单元测试 (85%+)', 'Code Review', 'SonarQube', 'ELK', 'Swagger', '敏捷 / 极限编程'],
+      items: ['JUnit 5 / Mockito / AssertJ', 'TDD', 'Swagger / Knife4j', 'CI/CD', 'Docker', 'Code Review', 'ELK', 'SonarQube'],
     },
   ],
 
@@ -137,14 +139,13 @@ const zh = {
       company: '上海欧伏网络科技有限公司',
       role: '技术经理',
       period: '2022.11 – 2026.06',
-      current: false,
-      tags: ['AI 工程化', '架构设计', '团队管理', '低代码'],
+      tags: ['HR SaaS 全链路', '平台 0→1', '配置驱动架构', 'LLM 工程化'],
       highlights: [
-        '集成 Dify AI 平台与企业微信智能机器人，实现岗位智能搜索、自动邀约与反馈收集，显著提升招聘效率与候选人体验。',
-        '主导基于 Trino 的动态报表引擎，实现多数据源联邦查询与高级聚合，为低代码平台扩展报表能力，获投资人高度评价。',
-        '设计闲鱼账号自动绑定、内容自动生成与流量控制机制，吸引 6000+ 报名用户，日均处理 40+ 次操作。',
-        '基于阿里云 DTS 构建员工信息变更与快照系统，以无侵入式服务提供清晰时间线，获用户一致认可。',
-        '开发企业级绩效管理与提成薪酬计算系统，支持多维度评估、灵活权重配置与 Boss 成本账单延时生成。',
+        '组织人事数据中心（2023.03–2024.06，主服务 0→1 独立负责）：基于阿里云 DTS 订阅业务库 binlog，把行变更翻译为业务可读的变更记录与按天快照；扩展 AbstractUserMetaStore 让消费位点按消费组落库，重启与多实例均可续传；主干 123 个 Java 文件全部由本人首次引入。',
+        '考勤平台（2023.06–2024.05，0→1 主要建设者）：从工程初始化开始建设班次、班组、排班、加班、考勤报表与工作日历核心域；把报表从「周期末全量加载内存」改为「每日临时数据 + 周期末汇总」两级模型，避免 OOM 并支持指定人天增量重算；新增 656 个 Java 文件、48 个测试类。',
+        '企业报表平台（2022.12–2025.02，核心开发 · 搭建期主导）：从零设计报表 SQL 构建引擎（7 个子句构建器 + 20+ 可插拔算子）与 Trino 四类数据源联邦查询底座，支撑 26 个月迭代，占主干提交量 96%。',
+        'AI 招募平台（2025.09–2026.01，独立负责闲鱼渠道）：打通淘宝开放平台批量发布与线索回收；接入 Dify 大模型编排与企微机器人，用超时收敛、熔断与 Redisson 幂等键治理 LLM 不确定性，并以 QLExpress4 承担金额计算，形成「LLM 生成、规则引擎计算」的混合架构。',
+        '绩效管理系统（2025.07–2026.04，核心开发 · 第 2 号贡献者）：以 PostgreSQL JSONB 承载频繁变动的考核模板，把校验下沉为领域对象 + Checker 链；打通「周期配置 → 任务生成 → 多评估人打分 → 导入调分 → 面谈确认」全链路，交付 25 个 REST 端点。',
       ],
     },
     {
@@ -184,78 +185,102 @@ const zh = {
     },
   ],
 
-  /** 精选项目 */
+  /** 精选项目 —— 按证据强度排序：Datahub → TimeManage → Report → MaltoseHr → Performance */
   projects: [
     {
-      name: 'AI 招募',
-      role: '技术经理',
-      period: '2025.09 – 2026.05',
-      link: 'https://aizhaomu.offersaas.com/',
+      name: 'datahub · 组织人事数据中心',
+      role: '核心开发 · 主服务 0→1 独立负责',
+      period: '2023.03 – 2024.06',
       featured: true,
-      ai: true,
       summary:
-        '面向灵活用工场景的企业级 HR SaaS 平台，整合闲鱼、企业微信等生态，实现 AI 驱动的智能招聘与自动化薪酬核算全链路数字化。支撑日均 5000+ 岗位发布、月处理 2万+ 笔薪酬账单、服务 10万+ 月活用户。',
+        '面向 HR SaaS 的组织人事变更数据平台：基于阿里云 DTS 订阅业务库 binlog，结合库表元数据配置，把行变更自动翻译为业务可读的变更记录，按天沉淀员工全量快照，支撑历史回溯与「按条件组圈人」分析；历史查询负载通过 Dubbo 契约从业务库剥离到 ClickHouse。',
       highlights: [
-        '主导薪酬核算引擎重构，采用状态表与数据表分离架构，解决 BOSS 成本跨月分摊、离职清算等复杂场景的数据一致性。',
-        '基于 Redisson RRateLimiter 设计分布式限流方案，将闲鱼 API 限流错误率降低 90%+，支撑日均 5000+ 岗位稳定发布。',
-        '批量删除岗位接口响应从 8s 优化至 1.2s；薪酬计算并行流优化，整体耗时减少 40%。',
-        '系统可用性从 99.5% 提升至 99.95%，核心接口 P99 延迟控制在 500ms 以内；算薪自动化每月节省人力成本 60%+。',
+        '从 0 搭建 binlog 订阅链路：扩展 AbstractUserMetaStore 把消费位点按消费组持久化到业务库，配合可配置的 maxConsumedRecordId 水位跳过已消费记录，使消费端在重启与多实例部署下都能正确续传。',
+        '把「至少一次」投递收敛为业务上的不重不丢：位点水位前置过滤 + Dubbo 重试 + 唯一键兜底（DuplicateKeyException 视为已处理）三道防线，并增加空变更抑制，避免心跳类更新污染变更时间线。',
+        '以同全限定名类遮蔽为 DTS SDK 补齐 JSONB 类型支持（零侵入、不挡升级路径）；变更记录构造完全由表级 / 字段级元数据配置驱动，接入一张新表只配数据、不改代码，翻译热路径建立 16 个细粒度缓存域。',
       ],
       metrics: [
-        { value: '99.95%', label: '系统可用性' },
-        { value: 'P99<500ms', label: '核心接口延迟' },
-        { value: '8s→1.2s', label: '批量接口优化' },
-        { value: '↓90%', label: 'API 限流错误率' },
+        { value: '123', label: '主干 Java 文件 100% 本人首次引入' },
+        { value: '0 行', label: '接入新表的变更记录改造代码' },
+        { value: '556', label: '四仓提交（433 已落主干）' },
+        { value: '19', label: '查询过滤算子（区间 / 前后缀 / IN）' },
       ],
-      tags: ['Spring Boot', 'Dubbo', 'Redisson', 'RabbitMQ', 'Dify AI', 'PostgreSQL'],
+      tags: ['阿里云 DTS', 'Spring Boot 2.1', 'PostgreSQL / JSONB', 'ClickHouse', 'Dubbo', 'XXL-Job', 'Redis'],
+    },
+    {
+      name: 'timeManage · 考勤平台',
+      role: '核心开发 · 0→1 主要建设者',
+      period: '2023.06 – 2024.05',
+      featured: true,
+      summary:
+        '面向企业人事 / HRO 场景的时间管理与考勤微服务：覆盖班次、班组、排班、打卡、加班、休假、假日与工作日历、考勤日报 / 月报 / 季报 / 年报、考勤周期；向薪酬核算输出考勤周期与月报数据，并支持集团端与客户端多项目隔离。',
+      highlights: [
+        '从工程初始化开始搭建服务骨架与核心域（班次、班组、排班、考勤规则、假日、加班、报表），以 ACL 层隔离人事、项目、审批流与数据服务等外部域；新增 656 个 Java 文件。',
+        '重构考勤报表计算架构：把「周期末全量加载内存生成」改为「每日生成临时数据 + 周期末汇总」两级模型，支持指定人天增量重算；报表行动态列以 JSONB 存储，配合 @Async、分批保存与并行流避免 OOM 与长耗时。',
+        '把考勤规则、加班规则与报表列公式外置为可配置表达式，扩展 13 个业务函数（司龄、加班时长、应计薪天数等）并提供在线校验 API；排班从「预生成落库」演进为「按工作日历按需计算」，大幅降低数据维护成本。',
+      ],
+      metrics: [
+        { value: '656', label: '新增 Java 文件（含 63 测试文件）' },
+        { value: '1,972', label: '次提交 · 主干占比 64%' },
+        { value: '75', label: '需求工单 / 11 个月' },
+        { value: '194', label: '单元测试用例（48 测试类）' },
+      ],
+      tags: ['Spring Boot 2.1', 'MyBatis-Plus', 'PostgreSQL / JSONB', 'RabbitMQ', 'Redis', 'XXL-Job', 'Dubbo', '规则引擎'],
+    },
+    {
+      name: 'report · 企业报表平台',
+      role: '核心开发 · 搭建期主导',
+      period: '2022.12 – 2025.02',
+      summary:
+        '基于 Trino 的企业级报表查询服务：自研报表 SQL 构建引擎把前端视图配置翻译为可执行查询，支持 PostgreSQL / ClickHouse / MongoDB / MySQL 四类数据源联邦查询，提供数据集、图表、交叉表、导出、数据权限与 Dubbo RPC 能力。',
+      highlights: [
+        '从零设计报表 SQL 构建引擎：select / from / join / where / group / order / limit 七个子句构建器 + 查询编排层（引用字段自动拆子查询、消除未使用 left join、自动补齐 group by）；20+ 算子抽象成类，加一个算子只需新增一个实现类。',
+        '以 Trino 430 为统一查询入口，通过 catalog 映射四类数据源，把方言差异收敛到数据源适配层；count 与 data 用 CompletableFuture 并行执行压缩分页耗时，不需要总数时跳过 count。',
+        '26 个月 1,126 次主干提交（占比 96%）、+67k / −47k 行、首次引入 202 个业务 Java 文件与 82 个测试文件；其中从零搭建期（2022.12–2023.05）贡献 558 次提交、185 个 Java 文件与 58 个测试文件。',
+      ],
+      tags: ['Trino 430', 'Spring Boot 2.1', 'JDBC / Druid', '联邦查询', 'Dubbo', 'OAuth'],
+    },
+    {
+      name: 'MaltoseHr · AI 招募平台',
+      role: 'Java 后端 · 独立负责闲鱼渠道',
+      period: '2025.09 – 2026.01',
+      link: 'https://aizhaomu.offersaas.com/',
+      ai: true,
+      summary:
+        '面向灵活用工场景的 AI 招聘平台：企业微信智能机器人 + Dify 大模型编排提供 C 端求职对话与 B 端招募能力；打通闲鱼（淘宝开放平台）招聘渠道实现岗位批量发布与报名线索回收，并建设薪酬方案与自动算薪能力（薪酬模块已完成开发、测试环境验证）。',
+      highlights: [
+        '独立负责闲鱼渠道后端 0→1：账号绑定 / 解绑、实名认证状态管理、岗位模板同步、批量发布（单岗位最高 200 帖）、定时刷新与自动下架全链路；沉淀 8 类开放平台专用异常体系，用 spring-retry @Retryable 退避重试隔离第三方抖动。',
+        '接入 Dify 大模型编排：多应用（含 workflow）流式响应与全事件解析（node_started / node_finished / workflow_finished / message_end），设计 conversationId 生命周期管理（Redis + TTL）桥接企微无状态回调与多轮会话。',
+        '划定 LLM 边界：高精度金额计算交给 QLExpress4 可配置表达式（策略模式解耦参数准备与规则执行），15s 超时收敛 + Dify 熔断开关 + Redisson RBucket 幂等键解决超时导致的企微重复推送，形成「LLM 生成、规则引擎计算」的混合架构。',
+      ],
+      tags: ['Spring Boot 3.2', 'Java 21', 'Dify', 'QLExpress4', 'Redisson', 'WebSocket', '淘宝开放平台', '企业微信'],
+    },
+    {
+      name: 'performance · 绩效管理系统',
+      role: '核心开发 · 第 2 号贡献者（4 人中）',
+      period: '2025.07 – 2026.04',
+      summary:
+        '集团 HR SaaS 绩效子系统：覆盖「绩效周期配置 → 评估任务生成 → 多评估人打分 → 结果导入与调分 → 绩效面谈确认」完整考核链路；2025 年 8–9 月为从零搭建期（占本人提交量 95%）。',
+      highlights: [
+        '设计 PostgreSQL JSONB 半结构化存储承载随考核方案频繁变动的评估详情与指标配置，换取 schema 灵活性；代价是失去字段级约束，因此把校验下沉到领域对象与 Checker 链（EmpConfigChecker + 4 个独立校验器，报错定位到具体行列，周期 Service 削减约 250 行）。',
+        '主导评估任务明细拆表（details 内嵌 JSON → 独立 pms_evaluation_task_detail），重建读写路径支撑多评估人并行打分；抽象 EvaluationAspects（考核方面）/ EvaluationIndicator / EvaluatorsTaskContext 领域模型，查询接口返回 Optional<T> 消除 NPE 分支。',
+        '以 BigDecimal 承载指标得分、综合得分与默认 / 最终比例的多轮加权计算，自研高精度工具类固化舍入与比例换算并配套单测；对 7 个多表写方法显式声明 @Transactional(rollbackFor = Exception.class)，配合「非评估中不允许改分」状态机约束保证一致性。',
+      ],
+      tags: ['Spring Boot 2.1', 'PostgreSQL / JSONB', 'MyBatis-Plus', 'Dubbo', 'Redis', 'JUnit 5'],
     },
     {
       name: '复合用工平台',
       role: '技术经理',
       period: '2024.08 – 2025.08',
       link: 'https://lg.offersaas.com/',
-      featured: true,
       summary:
-        '面向大中型企业的一站式人力资源全生命周期管理系统，支持正式工、派遣、灵工、项目制等多模式复合用工，解决高并发下合同签署、复杂审批流转与百万级员工数据的高效管理。',
+        '面向大中型企业的一站式人力资源全生命周期管理系统，支持正式工、派遣、灵工、项目制等多模式复合用工，解决合同签署、复杂审批流转与大规模员工数据的并发管理问题。',
       highlights: [
-        '主导 OfferPersonnel 人事核心服务设计，以策略模式支撑多用工形态差异化规则，保障高频变更下花名册数据强一致性。',
-        '基于 Flowable 深度二次开发构建可配置审批中台，支撑入离职、合同盖章、OA 请假等 20+ 业务场景，审批流与业务完全解耦。',
-        '以适配器模式屏蔽 e签宝、上上签等签章服务商差异，异步队列 + 状态机解决长延迟签署状态同步，签署成功率提升至 99.5%+。',
-        '设计「预校验-分批处理-错误回滚」三段式导入流程，单批次稳定处理万级数据；多级缓存优化使核心接口响应提升约 30%。',
-      ],
-      metrics: [
-        { value: '20+', label: '审批业务场景' },
-        { value: '99.5%+', label: '电子签署成功率' },
-        { value: '万级', label: '单批次数据处理' },
-        { value: '↑30%', label: '核心接口响应' },
+        '主导 OfferPersonnel 人事核心服务设计，以策略模式支撑多用工形态差异化规则，保障高频变更下花名册数据一致性。',
+        '基于 Flowable 深度二次开发构建可配置审批中台，支撑入离职、合同盖章、OA 请假等业务场景，审批流与业务完全解耦。',
+        '以适配器模式屏蔽 e签宝、上上签等签章服务商差异，异步队列 + 状态机解决长延迟签署状态同步；设计「预校验 - 分批处理 - 错误回滚」三段式导入流程，配合多级缓存优化核心接口响应。',
       ],
       tags: ['Spring Boot', 'Dubbo', 'Flowable', 'RabbitMQ', 'Redis', 'XXL-Job', 'PostgreSQL'],
-    },
-    {
-      name: 'report · 动态报表引擎',
-      role: '后端负责人',
-      period: '2022.12 – 2024.07',
-      summary:
-        '基于 Trino 构建自定义报表引擎，实现对海量异构数据的高效联邦查询，根据用户条件动态生成高级 SQL，并支持租户隔离、逻辑删除、自定义字段与 JSON 字段翻译。',
-      highlights: [
-        '主导技术选型与架构设计，从零搭建报表引擎核心模块，支撑低代码平台报表能力扩展。',
-        '采用 TDD 开发所有关键组件，保障代码质量与可维护性。',
-        '协同前端、低代码后端与运维团队推动系统顺利上线，为业务提供稳定高效的报表服务。',
-      ],
-      tags: ['Trino', 'Spring Boot', 'TDD', '联邦查询', '低代码'],
-    },
-    {
-      name: 'datahub · 数据中心',
-      role: '后端负责人',
-      period: '2023.03 – 2024.06',
-      summary:
-        '构建数据库变更记录与员工快照的高效采集机制，保障数据准确性与实时性，为业务决策提供可靠数据基础。',
-      highlights: [
-        '主导后端架构设计与核心接口开发，确保系统高稳定与良好扩展性。',
-        '优化数据处理流程，系统整体处理效率提升 30%，数据准确率进一步提高。',
-        '通过技术指导与任务分配提升团队协作效率，保障后端功能稳定交付。',
-      ],
-      tags: ['阿里云 DTS', 'Spring Boot', '数据快照', '架构设计'],
     },
     {
       name: 'FIOLA · 开放银行金融平台',
@@ -272,19 +297,6 @@ const zh = {
       tags: ['Spring Cloud', 'PostgreSQL', 'Docker', 'TDD', 'ETL', '开放银行'],
     },
     {
-      name: '贷款超市 · SaaS 平台',
-      role: 'Java 高级开发工程师',
-      period: '2019.07 – 2020.11',
-      summary:
-        '主导贷款超市重构版 SaaS 平台开发，为商家提供产品线管理、营销策略配置、白名单管理与多维度数据统计，提升渠道运营效率与转化率。',
-      highlights: [
-        '在原有模型基础上完成 95% 代码重写，采用 Spring Boot + JPA + MyBatis 技术栈应对复杂统计需求。',
-        '引入 Swagger 优化 API 管理，设计精细化权限控制机制保障敏感资源访问安全。',
-        '统一全局异常处理与返回数据封装，规范代码结构与业务模型设计，增强系统健壮性。',
-      ],
-      tags: ['Spring Boot', 'JPA', 'MyBatis', 'Swagger', 'SaaS', '权限控制'],
-    },
-    {
       name: 'Workio · 人事管理系统',
       role: 'Java 高级开发工程师',
       period: '2021.06 – 2022.07',
@@ -296,6 +308,19 @@ const zh = {
         '显著提升系统易用性与数据准确性，为管理层提供更高效的决策支持。',
       ],
       tags: ['Spring Boot', '考勤引擎', '人事管理', '敏捷开发'],
+    },
+    {
+      name: '贷款超市 · SaaS 平台',
+      role: 'Java 高级开发工程师',
+      period: '2019.07 – 2020.11',
+      summary:
+        '主导贷款超市重构版 SaaS 平台开发，为商家提供产品线管理、营销策略配置、白名单管理与多维度数据统计，提升渠道运营效率与转化率。',
+      highlights: [
+        '在原有模型基础上完成 95% 代码重写，采用 Spring Boot + JPA + MyBatis 技术栈应对复杂统计需求。',
+        '引入 Swagger 优化 API 管理，设计精细化权限控制机制保障敏感资源访问安全。',
+        '统一全局异常处理与返回数据封装，规范代码结构与业务模型设计，增强系统健壮性。',
+      ],
+      tags: ['Spring Boot', 'JPA', 'MyBatis', 'Swagger', 'SaaS', '权限控制'],
     },
     {
       name: '教宜优 · 智能学习诊断系统',
@@ -343,9 +368,9 @@ const en = {
   profile: {
     name: 'Wang Yousong',
     nameEn: 'Wang Yousong',
-    title: 'Java Architect / Engineering Manager',
+    title: 'Senior Java Backend / Platform Architecture',
     tagline:
-      '10 years of Java backend and architecture experience, focused on high-concurrency distributed systems and large-scale (10M+ records) data governance; led enterprise-grade engineering adoption of LLM capabilities including MCP, Spring AI and LangChain4j — using AI to re-engineer traditional business processes.',
+      'Backend engineer focused on building platform-level systems from zero to one — three platform builds, verifiable commit by commit. My method: externalise business variability into configuration and pluggable units, then converge external uncertainty into business determinism with offsets, idempotency and state machines. Five projects form one HR SaaS chain, and over the last year I brought LLMs into that chain.',
     location: 'Shanghai',
     status: 'Available · Ready to Join Immediately',
     experienceYears: 10,
@@ -359,110 +384,110 @@ const en = {
       type: 'Full-time',
       city: 'Shanghai',
       salary: '35–40K CNY/mo',
-      roles: ['Architect', 'Engineering Manager', 'Senior / Staff Java Engineer'],
+      roles: ['Senior / Staff Java Backend', 'Backend Architect', 'Engineering Manager'],
     },
   },
 
-  /** Hero stats — value visible to recruiters in 3 seconds */
+  /** Hero stats — verified facts a recruiter can grasp in 3 seconds */
   heroStats: [
-    { value: '10', suffix: 'yrs+', label: 'Java backend / architecture' },
-    { value: '13', suffix: 'M+', label: 'Records migrated & architecture optimized' },
-    { value: '99.95', suffix: '%', label: 'Core system availability (99.5% → 99.95%)' },
-    { value: '60', suffix: '%+', label: 'Labor cost saved by payroll automation' },
+    { value: '10', suffix: '\u00A0yrs+', label: 'Java backend / platform building' },
+    { value: '3', suffix: '×', label: 'Platform systems built from zero to one' },
+    { value: '123', suffix: '', label: 'Java files on the service main branch — 100% introduced by me' },
+    { value: '5', suffix: '\u00A0stages', label: 'HR SaaS chain: org data → attendance → performance → recruiting → reporting' },
   ],
 
-  /** AI literacy section — differentiated core competency */
+  /** AI literacy — boundaries and engineering judgement, not API names */
   aiLiteracy: {
-    lead: 'More than calling LLM APIs — I know how to embed AI into enterprise systems stably and controllably. From the protocol layer (MCP) to application frameworks (Spring AI / LangChain4j) and business delivery (intelligent recruiting, LUI querying), I make AI generate real business value.',
+    lead: 'I don’t mythologise LLMs — I draw boundaries first: the LLM generates, the rule engine computes. Slow, uncertain model calls get wrapped in timeouts, circuit breakers and idempotency keys before they touch existing systems that have transactions, state and dedup requirements. I solve the last-mile engineering problem of AI delivery, not the demo problem.',
     capabilities: [
       {
-        icon: 'plug',
-        title: 'MCP Protocol in Practice',
-        tag: 'Model Context Protocol',
-        desc: 'Hands-on MCP practice: standardizing context interaction between LLMs and external tools / data sources, connecting Agent capabilities to enterprise systems at the last mile.',
-        points: ['Standardized tool / context integration', 'Agent–service decoupling', 'Scalable capability orchestration'],
+        icon: 'target',
+        title: 'Drawing the LLM Boundary',
+        tag: 'LLM generates · rule engine computes',
+        desc: 'High-precision payroll calculation stays out of the LLM: rules live in QLExpress4 configurable expressions, with the Strategy pattern decoupling parameter preparation from rule execution and month-dimension support.',
+        points: ['Clear division of labour', 'QLExpress4 expression-based payroll', 'Strategy pattern decoupling'],
       },
       {
-        icon: 'brain',
-        title: 'Enterprise LLM Integration',
-        tag: 'Spring AI · LangChain4j',
-        desc: 'Integrated LLM capabilities in the Spring ecosystem — RAG, Function Calling and prompt engineering — balancing stability and cost.',
-        points: ['RAG retrieval-augmented generation', 'Function Calling / tool use', 'Prompt engineering & tuning'],
+        icon: 'workflow',
+        title: 'Dify Orchestration & Production AIGC',
+        tag: 'Dify · Workflow · Streaming',
+        desc: 'Integrated multiple Dify applications (including workflow apps) via dify-api-java-sdk with streaming responses and full event parsing; used Dify to auto-generate Xianyu job titles and descriptions, with sensitive-word filtering, emoji detection and username cleaning so AI output can be published directly to third-party channels.',
+        points: ['Full workflow event parsing', 'Streaming & multi-turn chat', 'Publish-ready AIGC content'],
+      },
+      {
+        icon: 'shield',
+        title: 'Converging LLM Uncertainty',
+        tag: 'Timeout · Circuit breaker · Idempotency',
+        desc: 'Diagnosed and fixed a production issue where Dify timeouts made WeCom re-push the same message: callback timeout converged to 15s, a Dify circuit-breaker switch prevents overload, and Redisson RBucket idempotency keys (processedTxtMsg / conversationFeedbackPushed) deduplicate messages and enforce one feedback prompt per conversation.',
+        points: ['15s timeout convergence', 'Circuit breaker switch', 'Idempotency keys'],
       },
       {
         icon: 'bot',
-        title: 'AI Agent & Workflow',
-        tag: 'Dify · WeCom Bot',
-        desc: 'Integrated the Dify AI platform with WeCom intelligent bots for smart job search, automated invitations and feedback collection — significantly streamlining the recruiting pipeline.',
-        points: ['Intelligent job search', 'Automated invitation & feedback loop', 'Recruiting efficiency + candidate experience'],
-      },
-      {
-        icon: 'sparkles',
-        title: 'AI in Production',
-        tag: 'LUI · AI Recruiting',
-        desc: 'Led the LUI natural-language query system and the AI recruiting platform, upgrading traditional business flows with conversational interaction and supporting 5,000+ daily job postings end-to-end.',
-        points: ['Natural-language query (LUI)', 'AI-driven recruiting', 'Automated payroll end-to-end'],
+        title: 'Session Bridging & Feedback Loop',
+        tag: 'conversationId · WeCom',
+        desc: 'WeCom callbacks are stateless while LLMs need multi-turn context — designed conversationId lifecycle management (Redis + TTL) to map the two. Implemented the WXBizJsonMsgCrypt AES encryption chain and card rendering, and built a user-feedback collection mechanism to close the loop on answer quality.',
+        points: ['Stateless ↔ multi-turn bridging', 'Card rendering & encryption', 'Answer-quality feedback'],
       },
     ],
     metrics: [
-      { value: '5,000+', label: 'Daily job postings' },
-      { value: '20K+', label: 'Monthly payroll runs' },
-      { value: '100K+', label: 'Monthly active users' },
-      { value: '6,000+', label: 'Automated-referral signups' },
+      { value: '15s', label: 'LLM callback timeout + circuit breaker' },
+      { value: '4 types', label: 'workflow events parsed end-to-end' },
+      { value: '201', label: 'new Java classes (delivered in 4 months)' },
+      { value: '58', label: 'requirement tickets · 554 commits' },
     ],
   },
 
-  /** Core strengths — distilled from personal advantages */
+  /** Core strengths — three 0→1 builds, one abstraction thread, uncertainty convergence, domain depth */
   advantages: [
     {
-      icon: 'cpu',
-      title: 'Deep Backend & Architecture Expertise',
-      desc: '10 years of Java backend experience with fluency in modern JDK (21/25/26) features and internals; expert in Spring Boot performance tuning; independently led a smooth migration of 13M+ records and solved high-concurrency bottlenecks with microservice and distributed architecture.',
+      icon: 'rocket',
+      title: 'Platform Systems, Built from Zero',
+      desc: 'Two of five projects started at engineering initialisation (add gitignore / add README); in a third I led the from-scratch build phase. All 123 Java files on the data hub main branch were first introduced by me — "from zero" here is a verifiable fact, not an adjective.',
     },
     {
-      icon: 'sparkles',
-      title: 'AI Engineering, Delivered',
-      desc: 'Forward-looking, hands-on AI engineering: deep practice with MCP, LangChain4j and Spring AI; led the integration of LLM capabilities into enterprise applications (e.g., the LUI natural-language query system), upgrading traditional business processes.',
+      icon: 'layers',
+      title: 'One Abstraction Thread: Externalise What Changes',
+      desc: 'The same move, five times: report SQL split into 7 clause builders + 20+ operators, changelog translation extracted into metadata configuration, attendance and payroll rules externalised as expressions, import validation refactored into a checker chain. Adding an operator = one class; onboarding a table = configuration only; adding a rule = one Checker; changing a rule = a config edit.',
     },
     {
       icon: 'shield',
-      title: 'High Engineering Standards',
-      desc: 'Applies DDD to complex domain modeling for maintainability and extensibility; drives standardized, automated local development practices; combines TDD with continuous refactoring for measurably better delivery efficiency and collaboration quality.',
+      title: 'Converging Uncertainty in Data-Intensive Pipelines',
+      desc: 'The recurring problem: upstream gives at-least-once delivery, potential timeouts and duplicates; the business needs exactly-once semantics. Three layers — watermark / idempotency keys as the source gate, retries in the middle, unique constraints as the backstop — plus @Async to decouple consumption from computation and state machines to guard concurrent writes. The same approach tamed LLM timeouts and duplicate pushes.',
     },
     {
-      icon: 'users',
-      title: 'Technical Insight & Cross-team Collaboration',
-      desc: 'Core developer in startup and downsizing teams, aligning business goals with technical architecture; evaluates designs by cost and operational impact; communicates complex technical plans clearly and drives efficient team–business collaboration.',
+      icon: 'database',
+      title: 'HR SaaS Domain Depth, End to End',
+      desc: 'Org/HR master data → attendance → performance → recruiting → reporting consumption: hands-on delivery in all five stages, with a clear view of the interfaces between them — how attendance-report semantics feed payroll, how performance depends on org master data, how recruiting leads land in the employee lifecycle. Domain knowledge cannot be shortcut.',
     },
   ],
 
-  /** Tech stack — grouped presentation */
+  /** Tech stack — grouped, based on what projects actually used */
   skills: [
     {
       category: 'Backend Core',
       icon: 'code',
-      items: ['Java (JDK 21/25/26)', 'Spring Boot', 'Spring Cloud', 'Dubbo', 'MyBatis-Plus', 'JPA'],
+      items: ['Java (8 / 21)', 'Spring Boot 2 & 3', 'Dubbo', 'MyBatis-Plus', 'Sa-Token', 'spring-retry', 'Hutool'],
     },
     {
       category: 'Architecture & Middleware',
       icon: 'layers',
-      items: ['Microservices', 'Distributed Systems', 'DDD', 'RabbitMQ', 'Redis / Redisson', 'XXL-Job', 'Flowable'],
+      items: ['Microservices / ACL', 'DDD domain modeling', 'Rule engine (QLExpress4)', 'RabbitMQ', 'Redis / Redisson', 'XXL-Job', 'Flowable', 'Guava Cache'],
     },
     {
       category: 'Data & Storage',
       icon: 'database',
-      items: ['PostgreSQL', 'PolarDB', 'MySQL', 'Trino Federated Query', 'NoSQL', 'Alibaba Cloud OSS / DTS'],
+      items: ['PostgreSQL / JSONB', 'ClickHouse', 'Trino federated query', 'MySQL', 'MongoDB', 'Alibaba Cloud DTS'],
     },
     {
       category: 'AI Engineering',
       icon: 'sparkles',
       highlight: true,
-      items: ['MCP', 'Spring AI', 'LangChain4j', 'Dify', 'RAG', 'Function Calling', 'Prompt Engineering'],
+      items: ['Dify / Workflow', 'Prompt engineering', 'LLM timeouts / circuit breaking / idempotency', 'MCP', 'Spring AI', 'LangChain4j', 'RAG'],
     },
     {
       category: 'Engineering Practices & DevOps',
       icon: 'git',
-      items: ['TDD', 'CI/CD', 'Docker', 'Unit Testing (85%+)', 'Code Review', 'SonarQube', 'ELK', 'Swagger', 'Agile / XP'],
+      items: ['JUnit 5 / Mockito / AssertJ', 'TDD', 'Swagger / Knife4j', 'CI/CD', 'Docker', 'Code Review', 'ELK', 'SonarQube'],
     },
   ],
 
@@ -472,14 +497,13 @@ const en = {
       company: 'Shanghai Oufu Network Technology Co., Ltd.',
       role: 'Engineering Manager',
       period: '2022.11 – 2026.06',
-      current: false,
-      tags: ['AI Engineering', 'Architecture Design', 'Team Leadership', 'Low-Code'],
+      tags: ['HR SaaS Full Chain', 'Platform 0→1', 'Configuration-Driven Architecture', 'LLM Engineering'],
       highlights: [
-        'Integrated the Dify AI platform with WeCom intelligent bots for smart job search, automated invitations and feedback collection — significantly improving recruiting efficiency and candidate experience.',
-        'Led a Trino-based dynamic reporting engine with multi-source federated queries and advanced aggregation, extending the low-code platform’s reporting capabilities to strong investor acclaim.',
-        'Designed Xianyu account auto-binding, content auto-generation and traffic throttling, attracting 6,000+ registered users with 40+ operations handled daily.',
-        'Built an employee-change and snapshot system on Alibaba Cloud DTS, delivering clear timelines through a non-invasive service — highly praised by users.',
-        'Developed enterprise performance management and commission payroll systems supporting multi-dimensional assessment, flexible weighting and delayed BOSS cost billing.',
+        'Org & HR Data Hub (2023.03–2024.06; sole owner of the main service, 0→1): real-time binlog subscription via Alibaba Cloud DTS, translating row changes into human-readable change records and daily snapshots. Extended AbstractUserMetaStore to persist consumption offsets per consumer group into the business database, resuming correctly across restarts and multi-instance deployment; all 123 Java files on the main branch were first introduced by me.',
+        'Attendance Platform (2023.06–2024.05; primary builder, 0→1): built the shift, team, rostering, overtime, attendance-report and work-calendar domains from engineering initialisation. Replaced period-end full in-memory report generation with a "daily temporary data + period-end roll-up" two-stage model, avoiding OOM and enabling person-day incremental recalculation; added 656 Java files and 48 test classes.',
+        'Enterprise Reporting Platform (2022.12–2025.02; core developer, led the build phase): designed the report SQL builder engine from zero (7 clause builders + 20+ pluggable operators) and the Trino federated-query foundation across four data sources, sustaining 26 months of iteration with 96% of main-branch commits.',
+        'AI Recruiting Platform (2025.09–2026.01; sole owner of the Xianyu channel): built Taobao Open Platform bulk publishing and lead capture; wired Dify LLM orchestration and the WeCom bot, taming LLM uncertainty with timeout convergence, a circuit breaker and Redisson idempotency keys, and keeping high-precision amount calculation in QLExpress4 — the "LLM generates, rule engine computes" hybrid architecture.',
+        'Performance Management System (2025.07–2026.04; core developer, second-largest contributor): modelled fast-changing appraisal templates on PostgreSQL JSONB with validation pushed into domain objects plus a checker chain; delivered the full loop from cycle configuration to task generation, multi-evaluator scoring, result import and adjustment, and interview confirmation — 25 REST endpoints.',
       ],
     },
     {
@@ -519,78 +543,102 @@ const en = {
     },
   ],
 
-  /** Selected projects */
+  /** Selected projects — ordered by strength of evidence */
   projects: [
     {
-      name: 'AI Recruiting',
-      role: 'Engineering Manager',
-      period: '2025.09 – 2026.05',
-      link: 'https://aizhaomu.offersaas.com/',
+      name: 'datahub · Org & HR Data Hub',
+      role: 'Core Developer · Sole Owner of the Main Service (0→1)',
+      period: '2023.03 – 2024.06',
       featured: true,
-      ai: true,
       summary:
-        'An enterprise HR SaaS platform for flexible staffing, integrating the Xianyu and WeCom ecosystems for AI-driven intelligent recruiting and fully digitalized automated payroll. Supports 5,000+ daily job postings, 20K+ monthly payroll runs and 100K+ monthly active users.',
+        'HR SaaS organisational change-data platform: captures business-database binlog in real time via Alibaba Cloud DTS, translates row changes into business-readable change records with table/field metadata configuration, materialises daily employee snapshots for point-in-time retrospection and condition-group people search, and offloads historical queries from the business database to ClickHouse.',
       highlights: [
-        'Led the payroll engine refactor with a status/data table separation architecture, solving data consistency for complex scenarios such as cross-month BOSS cost amortization and offboarding settlement.',
-        'Designed a distributed rate limiter on Redisson RRateLimiter, cutting Xianyu API throttling errors by 90%+ and sustaining 5,000+ daily job postings.',
-        'Batch job-deletion API response time cut from 8s to 1.2s; parallel-stream optimization of payroll computation reduced overall time by 40%.',
-        'System availability raised from 99.5% to 99.95% with core API P99 latency under 500ms; payroll automation saves 60%+ in labor cost every month.',
+        'Built the binlog subscription pipeline from zero: extended AbstractUserMetaStore to persist offsets per consumer group into the business database with a configurable maxConsumedRecordId watermark that skips already-consumed records, so restarts and multi-instance deployments resume correctly.',
+        'Converged at-least-once delivery into no-duplicate / no-loss with three layers — watermark pre-filtering, Dubbo retries and a unique-constraint backstop treating DuplicateKeyException as already processed — plus empty-change suppression to keep heartbeat updates out of the timeline.',
+        'Patched JSONB support into the DTS SDK via same-fully-qualified-name class shadowing (zero intrusion, upgrade path preserved); changelog construction is fully metadata-driven, so onboarding a new monitored table means configuration data only — no code — and 16 fine-grained cache regions protect the translation hot path.',
       ],
       metrics: [
-        { value: '99.95%', label: 'System availability' },
-        { value: 'P99<500ms', label: 'Core API latency' },
-        { value: '8s→1.2s', label: 'Batch API optimization' },
-        { value: '↓90%', label: 'API throttling error rate' },
+        { value: '123', label: 'Java files on main — 100% introduced by me' },
+        { value: '0 lines', label: 'of code to onboard a new monitored table' },
+        { value: '556', label: 'commits across four repos (433 on main)' },
+        { value: '19', label: 'query filter operators (ranges, IN, null checks…)' },
       ],
-      tags: ['Spring Boot', 'Dubbo', 'Redisson', 'RabbitMQ', 'Dify AI', 'PostgreSQL'],
+      tags: ['Alibaba Cloud DTS', 'Spring Boot 2.1', 'PostgreSQL / JSONB', 'ClickHouse', 'Dubbo', 'XXL-Job', 'Redis'],
+    },
+    {
+      name: 'timeManage · Attendance Platform',
+      role: 'Core Developer · Primary Builder (0→1)',
+      period: '2023.06 – 2024.05',
+      featured: true,
+      summary:
+        'Time-management and attendance microservice for HR / HRO scenarios: shifts, teams, rostering, clock-in, overtime, leave, holidays and work calendars, daily/monthly/quarterly/yearly attendance reports and attendance cycles; it feeds attendance-cycle and monthly-report data to payroll and isolates group vs. client projects.',
+      highlights: [
+        'Built the service skeleton and core domains from engineering initialisation (shifts, teams, rostering, attendance rules, holidays, overtime, reports), isolating upstream domains (HR, projects, approval flows, data services) behind an ACL layer; added 656 Java files.',
+        'Refactored reporting into a "daily temporary data + period-end roll-up" two-stage model with person-day incremental recalculation, JSONB dynamic columns for report rows, and @Async / batched saves / parallel streams — eliminating OOM risk from full in-memory generation.',
+        'Externalised attendance, overtime and report-column formulas as configurable expressions, extended 13 business functions (seniority, overtime hours, payable days…) with an online validation API, and moved rostering from pre-generated rows to on-demand computation from the work calendar.',
+      ],
+      metrics: [
+        { value: '656', label: 'new Java files (incl. 63 test files)' },
+        { value: '1,972', label: 'commits · 64% of the main branch' },
+        { value: '75', label: 'requirement tickets in 11 months' },
+        { value: '194', label: 'unit-test cases (48 test classes)' },
+      ],
+      tags: ['Spring Boot 2.1', 'MyBatis-Plus', 'PostgreSQL / JSONB', 'RabbitMQ', 'Redis', 'XXL-Job', 'Dubbo', 'Rule Engine'],
+    },
+    {
+      name: 'report · Enterprise Reporting Platform',
+      role: 'Core Developer · Led the Build Phase',
+      period: '2022.12 – 2025.02',
+      summary:
+        'Trino-based enterprise reporting service: a self-built SQL builder engine turns front-end view configuration into executable SQL, with federated queries over PostgreSQL, ClickHouse, MongoDB and MySQL, plus datasets, charts, cross-tabs, exports, data permissions and Dubbo RPC.',
+      highlights: [
+        'Designed the report SQL builder from zero: seven clause builders (select / from / join / where / group / order / limit) plus a query orchestration layer that splits reference fields into subqueries, drops unused left joins and auto-fills group-by columns; 20+ operators as pluggable classes — a new operator is one new class.',
+        'Trino 430 as the single query entry point, mapping four source types through catalogs and containing dialect differences in an adaptation layer; count and data queries run in parallel via CompletableFuture to cut paged-query latency, and count is skipped when totals are not needed.',
+        '26 months and 1,126 main-branch commits (96% share), +67k/−47k lines, 202 business Java files and 82 test files introduced; the build-from-scratch phase (2022.12–2023.05) alone contributed 558 commits, 185 Java files and 58 test files.',
+      ],
+      tags: ['Trino 430', 'Spring Boot 2.1', 'JDBC / Druid', 'Federated Query', 'Dubbo', 'OAuth'],
+    },
+    {
+      name: 'MaltoseHr · AI Recruiting Platform',
+      role: 'Java Backend · Sole Owner of the Xianyu Channel',
+      period: '2025.09 – 2026.01',
+      link: 'https://aizhaomu.offersaas.com/',
+      ai: true,
+      summary:
+        'AI recruiting platform for flexible staffing: a WeCom bot plus Dify LLM orchestration power C-side job-seeker chat and B-side recruiting; the Xianyu (Taobao Open Platform) channel supports bulk job publishing and applicant-lead capture, alongside compensation plans and automated payroll calculation (developed and verified in the test environment).',
+      highlights: [
+        'Owned the Xianyu channel backend 0→1: account binding/unbinding, real-name status, job-template sync, bulk publishing (up to 200 posts per job), scheduled refresh and auto-takedown; an 8-type open-platform exception hierarchy plus spring-retry @Retryable backoff retry isolates third-party instability.',
+        'Wired Dify LLM orchestration — multiple apps including workflow — with streaming responses and full event parsing (node_started / node_finished / workflow_finished / message_end), and designed conversationId lifecycle management (Redis + TTL) to bridge WeCom stateless callbacks with multi-turn conversations.',
+        'Drew the LLM boundary: high-precision amount calculation stays in QLExpress4 configurable expressions (Strategy pattern decoupling parameter preparation from execution), while 15s timeout convergence, a Dify circuit breaker and Redisson RBucket idempotency keys resolve duplicate WeCom pushes caused by LLM timeouts.',
+      ],
+      tags: ['Spring Boot 3.2', 'Java 21', 'Dify', 'QLExpress4', 'Redisson', 'WebSocket', 'Taobao Open Platform', 'WeCom'],
+    },
+    {
+      name: 'performance · Performance Management System',
+      role: 'Core Developer · Second-largest Contributor (of 4)',
+      period: '2025.07 – 2026.04',
+      summary:
+        'Group HR SaaS performance subsystem covering the full appraisal loop — cycle configuration → evaluation task generation → multi-evaluator scoring → result import and adjustment → interview confirmation — with the from-scratch build phase accounting for 95% of my commits.',
+      highlights: [
+        'Modelled fast-changing appraisal details and indicator configuration on PostgreSQL JSONB (JsonbTypeHandler + PgObjectUtils) instead of a relational schema needing constant DDL; the cost — lost column-level constraints — is compensated by validation in domain objects and a checker chain (EmpConfigChecker + 4 checkers, errors pinpointed to row and column, ~250 lines removed from the cycle service).',
+        'Led the split of evaluation task details out of an embedded JSON column into a dedicated pms_evaluation_task_detail table, rebuilding read/write paths for parallel scoring; consolidated conditions into domain objects (EvaluationAspects = appraisal dimensions, EvaluationIndicator, EvaluatorsTaskContext) and returned Optional<T> from lookups to remove NPE branches.',
+        'Carried scores and ratios through BigDecimal with a dedicated high-precision utility and unit tests, added a state-machine guard (no score changes outside "in evaluation") and explicit @Transactional(rollbackFor = Exception.class) on the 7 multi-table write methods.',
+      ],
+      tags: ['Spring Boot 2.1', 'PostgreSQL / JSONB', 'MyBatis-Plus', 'Dubbo', 'Redis', 'JUnit 5'],
     },
     {
       name: 'Flexible Workforce Platform',
       role: 'Engineering Manager',
       period: '2024.08 – 2025.08',
       link: 'https://lg.offersaas.com/',
-      featured: true,
       summary:
-        'A one-stop full-lifecycle HR management platform for mid-to-large enterprises, supporting direct employment, dispatch, gig and project-based staffing — solving high-concurrency contract signing, complex approval flows and efficient management of million-level employee data.',
+        'One-stop full-lifecycle HR management platform for mid-to-large enterprises, supporting direct employment, dispatch, gig and project-based staffing — solving contract signing, complex approval flows and large-scale employee-data management under high concurrency.',
       highlights: [
-        'Led the OfferPersonnel core HR service design, using the strategy pattern to support differentiated rules across staffing forms and keep roster data strongly consistent under frequent changes.',
-        'Built a configurable approval hub on a deeply customized Flowable, supporting 20+ business scenarios (on/offboarding, contract stamping, OA leave) with approval flows fully decoupled from business logic.',
-        'Used the adapter pattern to mask signature-vendor differences (e签宝, 上上签); async queues plus a state machine resolved long-latency signing status sync, lifting signing success to 99.5%+.',
-        'Designed a “pre-check – batch processing – error rollback” three-stage import flow, stably processing 10K+ records per batch; multi-level caching improved core API response by ~30%.',
-      ],
-      metrics: [
-        { value: '20+', label: 'Approval scenarios' },
-        { value: '99.5%+', label: 'E-signing success rate' },
-        { value: '10K+', label: 'Records per batch' },
-        { value: '↑30%', label: 'Core API response' },
+        'Led the OfferPersonnel core HR service design, using the Strategy pattern to support differentiated rules across staffing forms and keeping roster data consistent under frequent changes.',
+        'Built a configurable approval hub on a deeply customised Flowable, supporting on/offboarding, contract stamping and OA leave with approval flows decoupled from business logic.',
+        'Used the Adapter pattern to mask signature-vendor differences (eSign, Shangshangqian), with async queues and a state machine resolving long-latency signing status; designed a "pre-check → batch processing → error rollback" import flow backed by multi-level caching.',
       ],
       tags: ['Spring Boot', 'Dubbo', 'Flowable', 'RabbitMQ', 'Redis', 'XXL-Job', 'PostgreSQL'],
-    },
-    {
-      name: 'report · Dynamic Report Engine',
-      role: 'Backend Lead',
-      period: '2022.12 – 2024.07',
-      summary:
-        'A custom report engine built on Trino, delivering efficient federated queries over massive heterogeneous data, dynamically generating advanced SQL from user conditions, with tenant isolation, logical deletion, custom fields and JSON field translation.',
-      highlights: [
-        'Led technical selection and architecture design; built the engine’s core modules from zero, powering the low-code platform’s reporting capabilities.',
-        'Applied TDD to all key components for quality and maintainability.',
-        'Coordinated frontend, low-code backend and SRE teams for a smooth launch, delivering stable and efficient reporting services.',
-      ],
-      tags: ['Trino', 'Spring Boot', 'TDD', 'Federated Query', 'Low-Code'],
-    },
-    {
-      name: 'datahub · Data Hub',
-      role: 'Backend Lead',
-      period: '2023.03 – 2024.06',
-      summary:
-        'Built an efficient collection mechanism for database change records and employee snapshots, ensuring data accuracy and timeliness as a reliable foundation for business decisions.',
-      highlights: [
-        'Led backend architecture design and core API development for high stability and good extensibility.',
-        'Streamlined data processing, improving overall system throughput by 30% and further raising data accuracy.',
-        'Improved team collaboration through technical mentoring and task allocation, ensuring stable backend delivery.',
-      ],
-      tags: ['Alibaba Cloud DTS', 'Spring Boot', 'Data Snapshot', 'Architecture Design'],
     },
     {
       name: 'FIOLA · Open Banking Platform',
@@ -607,19 +655,6 @@ const en = {
       tags: ['Spring Cloud', 'PostgreSQL', 'Docker', 'TDD', 'ETL', 'Open Banking'],
     },
     {
-      name: 'Loan Supermarket · SaaS Platform',
-      role: 'Senior Java Developer',
-      period: '2019.07 – 2020.11',
-      summary:
-        'Led the Loan Supermarket refactor SaaS platform, giving merchants product-line management, marketing strategy configuration, whitelist management and multi-dimensional statistics to lift channel efficiency and conversion.',
-      highlights: [
-        'Rewrote 95% of the codebase on a Spring Boot + JPA + MyBatis stack for complex statistics needs.',
-        'Introduced Swagger for API management and designed fine-grained permission controls to secure sensitive resources.',
-        'Unified global exception handling and response envelopes, standardizing code structure and domain modeling for robustness.',
-      ],
-      tags: ['Spring Boot', 'JPA', 'MyBatis', 'Swagger', 'SaaS', 'Access Control'],
-    },
-    {
       name: 'Workio · HR Management System',
       role: 'Senior Java Developer',
       period: '2021.06 – 2022.07',
@@ -631,6 +666,19 @@ const en = {
         'Significantly improved usability and data accuracy, supporting better management decisions.',
       ],
       tags: ['Spring Boot', 'Attendance Engine', 'HR Management', 'Agile'],
+    },
+    {
+      name: 'Loan Supermarket · SaaS Platform',
+      role: 'Senior Java Developer',
+      period: '2019.07 – 2020.11',
+      summary:
+        'Led the Loan Supermarket refactor SaaS platform, giving merchants product-line management, marketing strategy configuration, whitelist management and multi-dimensional statistics to lift channel efficiency and conversion.',
+      highlights: [
+        'Rewrote 95% of the codebase on a Spring Boot + JPA + MyBatis stack for complex statistics needs.',
+        'Introduced Swagger for API management and designed fine-grained permission controls to secure sensitive resources.',
+        'Unified global exception handling and response envelopes, standardizing code structure and domain modeling for robustness.',
+      ],
+      tags: ['Spring Boot', 'JPA', 'MyBatis', 'Swagger', 'SaaS', 'Access Control'],
     },
     {
       name: 'JiaoYiYou · Intelligent Learning Diagnostics',
