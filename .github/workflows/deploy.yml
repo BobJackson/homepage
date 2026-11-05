@@ -80,8 +80,11 @@ jobs:
             # 宿主机端口：默认 28081（与 nginx 反代 me.wangyousong.com → 172.20.0.1:28081 对应）
             PORT="${APP_PORT:-28081}"
 
-            echo "==> 登录 Docker Hub"
-            echo "$DOCKERHUB_TOKEN" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+            # 公共镜像可匿名拉取：登录仅用于规避 Docker Hub 限流，失败不应阻断部署
+            # （若镜像仓库是私有的，请删除下面的 || 降级，让登录失败直接中止）
+            echo "==> 登录 Docker Hub（失败不阻断）"
+            echo "$DOCKERHUB_TOKEN" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin \
+              || echo "WARN: docker login 失败，继续尝试匿名拉取"
 
             echo "==> 拉取最新镜像：$IMAGE"
             docker pull "$IMAGE"
