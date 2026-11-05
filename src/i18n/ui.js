@@ -112,34 +112,34 @@ const en = {
   // Section headings
   sections: {
     ai: {
-      eyebrow: 'AI Literacy · Differentiator',
-      title: 'LLM Boundaries,',
-      highlight: 'Engineered',
-      desc: 'Not API names — boundaries and engineering judgement: who generates, who computes, and how to tame model uncertainty with engineering discipline.',
+      eyebrow: 'AI Literacy · What Sets Me Apart',
+      title: 'LLM',
+      highlight: 'Boundaries & Engineering',
+      desc: 'Less about API calls, more about judgement: what the model should own, what it shouldn’t, and how to keep it from breaking a system that already has transactions and state.',
     },
     advantages: {
       eyebrow: 'Why Me',
-      title: 'Four Core',
-      highlight: 'Strengths',
-      desc: 'Three platform builds from zero, one abstraction thread across five projects, consistency engineering for data-intensive pipelines, and end-to-end HR SaaS domain depth.',
+      title: 'What I',
+      highlight: 'Bring',
+      desc: 'Three platforms built from scratch, one habit repeated across five projects, hard-won instincts for unreliable inputs, and end-to-end HR SaaS depth.',
     },
     skills: {
       eyebrow: 'Tech Stack',
       title: 'Tech',
       highlight: 'Stack',
-      desc: 'From backend core to LLM engineering: configuration-driven architecture, data-intensive pipelines, rule engines and a solid engineering-quality baseline.',
+      desc: 'From backend fundamentals to LLM engineering: configuration-driven architecture, data-heavy pipelines, rule engines and a real testing baseline.',
     },
     experience: {
       eyebrow: 'Career Path',
       title: 'Career',
       highlight: 'Experience',
-      desc: 'A clear growth curve: early years building systems, the middle years carrying three platforms at once, and the recent year bringing business flows and LLMs into the existing stack.',
+      desc: 'The short version: I started out building systems, spent the middle years carrying three platforms at once, and lately I’ve been putting LLMs into a stack that already worked.',
     },
     projects: {
       eyebrow: 'Featured Work',
       title: 'Selected',
-      highlight: 'Projects',
-      desc: 'Five projects form one complete HR SaaS chain: org/HR master data → attendance → performance → recruiting → reporting — every number traceable back to commits.',
+      highlight: 'Work',
+      desc: 'Five projects that add up to one HR SaaS chain — HR data, attendance, performance, recruiting, reporting — with numbers you can trace back to commits.',
     },
     education: {
       eyebrow: 'Education & Certs',
@@ -149,9 +149,9 @@ const en = {
     },
     contact: {
       eyebrow: 'Get In Touch',
-      title: "Let's",
-      highlight: 'Connect',
-      desc: "I'm currently between roles and available immediately. If you're looking for a backend engineer who can build platform systems from zero and wire LLMs reliably into existing systems, let's talk.",
+      title: 'Let’s',
+      highlight: 'Talk',
+      desc: 'I’m between roles and available now. If you need someone who can stand a platform up from scratch and then wire an LLM into it without breaking it, get in touch.',
     },
   },
 
@@ -163,7 +163,7 @@ const en = {
 
   // Contact
   contactTitle: 'Contact',
-  contactRolesTitle: 'Expected Roles',
+  contactRolesTitle: 'Looking For',
   contactCity: 'City',
   contactSalary: 'Salary',
   contactAvailability: 'Availability',
@@ -174,13 +174,13 @@ const en = {
 
   // Certifications
   certTitle: 'Certifications',
-  certNote: 'Continuously following modern JDK features (Records, virtual threads), LLM engineering practice and consistency governance for data-intensive pipelines.',
+  certNote: 'Still following modern Java (records, virtual threads), LLM engineering and consistency work on data-heavy pipelines.',
 
   // Footer
   footerBackToTop: 'Back to Top',
   footerRights: 'All rights reserved',
-  footerCredit: 'Built with React + Vite, crafted with',
-  footerCreditTail: 'for detail',
+  footerCredit: 'Built with React + Vite,',
+  footerCreditTail: 'and an eye for detail',
 }
 
 export default { zh, en }

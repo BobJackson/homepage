@@ -368,11 +368,11 @@ const en = {
   profile: {
     name: 'Wang Yousong',
     nameEn: 'Wang Yousong',
-    title: 'Senior Java Backend / Platform Architecture',
+    title: 'Senior Backend Engineer · Platform Architecture',
     tagline:
-      'Backend engineer focused on building platform-level systems from zero to one — three platform builds, verifiable commit by commit. My method: externalise business variability into configuration and pluggable units, then converge external uncertainty into business determinism with offsets, idempotency and state machines. Five projects form one HR SaaS chain, and over the last year I brought LLMs into that chain.',
+      'Backend engineer who builds platform systems from the ground up. I’ve done it three times — two from the first commit, one leading the initial build — and my default move is to take whatever changes most often out of the codebase and turn it into configuration or a pluggable component. On data-heavy systems that means absorbing upstream replays, duplicates and timeouts so the business only ever sees consistent results. My last five projects sit on one HR SaaS chain — HR data, attendance, performance, recruiting, reporting — and for the past year I’ve been wiring LLMs into it.',
     location: 'Shanghai',
-    status: 'Available · Ready to Join Immediately',
+    status: 'Available immediately',
     experienceYears: 10,
     education: "Bachelor's · Software Engineering",
     contact: {
@@ -384,84 +384,84 @@ const en = {
       type: 'Full-time',
       city: 'Shanghai',
       salary: '35–40K CNY/mo',
-      roles: ['Senior / Staff Java Backend', 'Backend Architect', 'Engineering Manager'],
+      roles: ['Senior / Staff Backend Engineer', 'Backend Architect', 'Engineering Manager'],
     },
   },
 
-  /** Hero stats — verified facts a recruiter can grasp in 3 seconds */
+  /** Hero stats — facts a recruiter can check against git */
   heroStats: [
-    { value: '10', suffix: '\u00A0yrs+', label: 'Java backend / platform building' },
-    { value: '3', suffix: '×', label: 'Platform systems built from zero to one' },
-    { value: '123', suffix: '', label: 'Java files on the service main branch — 100% introduced by me' },
-    { value: '5', suffix: '\u00A0stages', label: 'HR SaaS chain: org data → attendance → performance → recruiting → reporting' },
+    { value: '10', suffix: '\u00A0yrs+', label: 'Backend and platform engineering' },
+    { value: '3', suffix: '\u00A0×', label: 'Platform builds — two from the very first commit' },
+    { value: '123', suffix: '', label: 'Java files on the core service main branch — every one introduced by me' },
+    { value: '5', suffix: '\u00A0stages', label: 'One HR SaaS chain: HR data, attendance, performance, recruiting, reporting' },
   ],
 
-  /** AI literacy — boundaries and engineering judgement, not API names */
+  /** AI literacy — judgement and guardrails, not API name-dropping */
   aiLiteracy: {
-    lead: 'I don’t mythologise LLMs — I draw boundaries first: the LLM generates, the rule engine computes. Slow, uncertain model calls get wrapped in timeouts, circuit breakers and idempotency keys before they touch existing systems that have transactions, state and dedup requirements. I solve the last-mile engineering problem of AI delivery, not the demo problem.',
+    lead: 'I don’t treat LLMs as magic. First I decide what the model should and shouldn’t own: it drafts, the rule engine calculates. Then every slow, unreliable call gets a timeout, a kill switch and idempotency keys before it touches a system that already has transactions and state. That unglamorous last mile is where AI projects ship or stall.',
     capabilities: [
       {
         icon: 'target',
-        title: 'Drawing the LLM Boundary',
-        tag: 'LLM generates · rule engine computes',
-        desc: 'High-precision payroll calculation stays out of the LLM: rules live in QLExpress4 configurable expressions, with the Strategy pattern decoupling parameter preparation from rule execution and month-dimension support.',
-        points: ['Clear division of labour', 'QLExpress4 expression-based payroll', 'Strategy pattern decoupling'],
+        title: 'What the Model Owns',
+        tag: 'Drafting, not arithmetic',
+        desc: 'Payroll maths never goes to the model. The rules live in QLExpress4 expressions that can be changed without a deploy, and a strategy pattern keeps parameter gathering separate from rule execution, including month-by-month runs.',
+        points: ['A clear split of duties', 'Payroll rules as configuration', 'Parameter prep decoupled from execution'],
       },
       {
         icon: 'workflow',
-        title: 'Dify Orchestration & Production AIGC',
-        tag: 'Dify · Workflow · Streaming',
-        desc: 'Integrated multiple Dify applications (including workflow apps) via dify-api-java-sdk with streaming responses and full event parsing; used Dify to auto-generate Xianyu job titles and descriptions, with sensitive-word filtering, emoji detection and username cleaning so AI output can be published directly to third-party channels.',
-        points: ['Full workflow event parsing', 'Streaming & multi-turn chat', 'Publish-ready AIGC content'],
+        title: 'Dify Integration & AI Copy',
+        tag: 'Dify · workflows · streaming',
+        desc: 'Connected several Dify apps, workflow ones included, through dify-api-java-sdk: streaming responses, every workflow event parsed. It drafts Xianyu job titles and descriptions, and the output passes sensitive-word filtering, emoji checks and applicant-name cleanup before it is posted to a third-party marketplace.',
+        points: ['Every workflow event handled', 'Streaming, multi-turn chat', 'Copy that is safe to publish'],
       },
       {
         icon: 'shield',
-        title: 'Converging LLM Uncertainty',
-        tag: 'Timeout · Circuit breaker · Idempotency',
-        desc: 'Diagnosed and fixed a production issue where Dify timeouts made WeCom re-push the same message: callback timeout converged to 15s, a Dify circuit-breaker switch prevents overload, and Redisson RBucket idempotency keys (processedTxtMsg / conversationFeedbackPushed) deduplicate messages and enforce one feedback prompt per conversation.',
-        points: ['15s timeout convergence', 'Circuit breaker switch', 'Idempotency keys'],
+        title: 'Stopping Slow Models From Breaking Things',
+        tag: 'Timeouts · kill switch · idempotency',
+        desc: 'A Dify timeout was making WeCom deliver the same reply twice. I capped the callback at 15 seconds, added a kill switch on the Dify call and used Redisson RBucket idempotency keys (processedTxtMsg, conversationFeedbackPushed) so each message is handled once and each conversation gets exactly one feedback prompt.',
+        points: ['15-second callback cap', 'Kill switch on the model call', 'Idempotency at message level'],
       },
       {
         icon: 'bot',
-        title: 'Session Bridging & Feedback Loop',
+        title: 'WeCom Sessions & Feedback',
         tag: 'conversationId · WeCom',
-        desc: 'WeCom callbacks are stateless while LLMs need multi-turn context — designed conversationId lifecycle management (Redis + TTL) to map the two. Implemented the WXBizJsonMsgCrypt AES encryption chain and card rendering, and built a user-feedback collection mechanism to close the loop on answer quality.',
-        points: ['Stateless ↔ multi-turn bridging', 'Card rendering & encryption', 'Answer-quality feedback'],
+        desc: 'WeCom webhooks are stateless; conversations are not. A conversationId kept in Redis with a TTL bridges the two. I also handled the WXBizJsonMsgCrypt AES flow, card rendering and a rating prompt that fires once per conversation, which finally gave us real signal on answer quality.',
+        points: ['Stateless callbacks, multi-turn chat', 'Cards and encryption', 'Answer-quality feedback'],
       },
     ],
     metrics: [
-      { value: '15s', label: 'LLM callback timeout + circuit breaker' },
-      { value: '4 types', label: 'workflow events parsed end-to-end' },
-      { value: '201', label: 'new Java classes (delivered in 4 months)' },
-      { value: '58', label: 'requirement tickets · 554 commits' },
+      { value: '15s', label: 'Callback cap, plus a kill switch' },
+      { value: '4', label: 'Workflow event types handled end to end' },
+      { value: '201', label: 'New Java classes in four months' },
+      { value: '58', label: 'Tickets shipped; 554 commits' },
     ],
   },
 
-  /** Core strengths — three 0→1 builds, one abstraction thread, uncertainty convergence, domain depth */
+  /** Core strengths — the four claims I can defend under questioning */
   advantages: [
     {
       icon: 'rocket',
-      title: 'Platform Systems, Built from Zero',
-      desc: 'Two of five projects started at engineering initialisation (add gitignore / add README); in a third I led the from-scratch build phase. All 123 Java files on the data hub main branch were first introduced by me — "from zero" here is a verifiable fact, not an adjective.',
+      title: 'Platforms From Scratch',
+      desc: 'Two of my five projects started at the very first commit — the one that added .gitignore. On a third I led the initial build. Every Java file on the core service main branch is one I introduced. “From scratch” here is a git fact, not a résumé adjective.',
     },
     {
       icon: 'layers',
-      title: 'One Abstraction Thread: Externalise What Changes',
-      desc: 'The same move, five times: report SQL split into 7 clause builders + 20+ operators, changelog translation extracted into metadata configuration, attendance and payroll rules externalised as expressions, import validation refactored into a checker chain. Adding an operator = one class; onboarding a table = configuration only; adding a rule = one Checker; changing a rule = a config edit.',
+      title: 'Move What Changes Out of Code',
+      desc: 'I’ve done the same thing on five projects. Report SQL became seven clause builders and 20+ operators. Change-history translation became metadata. Attendance and payroll rules became expressions. Import validation became a chain of checkers. The payoff is always the same: a new operator is one class, a new table is configuration, a new rule is one checker, a changed rule is a config edit.',
     },
     {
       icon: 'shield',
-      title: 'Converging Uncertainty in Data-Intensive Pipelines',
-      desc: 'The recurring problem: upstream gives at-least-once delivery, potential timeouts and duplicates; the business needs exactly-once semantics. Three layers — watermark / idempotency keys as the source gate, retries in the middle, unique constraints as the backstop — plus @Async to decouple consumption from computation and state machines to guard concurrent writes. The same approach tamed LLM timeouts and duplicate pushes.',
+      title: 'Make Unreliable Inputs Behave',
+      desc: 'Upstream systems replay messages, time out and send duplicates; the business needs every event counted once. My usual three layers: filter at the source with an offset watermark or an idempotency key, retry in the middle, and let a unique constraint catch the rest. The same pattern later applied to a model that answers slowly and a chat platform that re-delivers.',
     },
     {
       icon: 'database',
-      title: 'HR SaaS Domain Depth, End to End',
-      desc: 'Org/HR master data → attendance → performance → recruiting → reporting consumption: hands-on delivery in all five stages, with a clear view of the interfaces between them — how attendance-report semantics feed payroll, how performance depends on org master data, how recruiting leads land in the employee lifecycle. Domain knowledge cannot be shortcut.',
+      title: 'HR SaaS, End to End',
+      desc: 'HR data, attendance, performance, recruiting, reporting: I’ve built in all five, so I know where they meet. How attendance close feeds payroll. What performance owes org data. How a recruiting lead becomes an employee record. No course teaches that.',
     },
   ],
 
-  /** Tech stack — grouped, based on what projects actually used */
+  /** Tech stack — grouped, based on what the projects actually used */
   skills: [
     {
       category: 'Backend Core',
@@ -471,39 +471,39 @@ const en = {
     {
       category: 'Architecture & Middleware',
       icon: 'layers',
-      items: ['Microservices / ACL', 'DDD domain modeling', 'Rule engine (QLExpress4)', 'RabbitMQ', 'Redis / Redisson', 'XXL-Job', 'Flowable', 'Guava Cache'],
+      items: ['Microservices / anti-corruption layers', 'DDD domain modeling', 'Rule engines (QLExpress4)', 'RabbitMQ', 'Redis / Redisson', 'XXL-Job', 'Flowable', 'Guava Cache'],
     },
     {
       category: 'Data & Storage',
       icon: 'database',
-      items: ['PostgreSQL / JSONB', 'ClickHouse', 'Trino federated query', 'MySQL', 'MongoDB', 'Alibaba Cloud DTS'],
+      items: ['PostgreSQL / JSONB', 'ClickHouse', 'Trino federated queries', 'MySQL', 'MongoDB', 'Alibaba Cloud DTS'],
     },
     {
       category: 'AI Engineering',
       icon: 'sparkles',
       highlight: true,
-      items: ['Dify / Workflow', 'Prompt engineering', 'LLM timeouts / circuit breaking / idempotency', 'MCP', 'Spring AI', 'LangChain4j', 'RAG'],
+      items: ['Dify / workflows', 'Prompt engineering', 'LLM timeouts, kill switches, idempotency', 'MCP', 'Spring AI', 'LangChain4j', 'RAG'],
     },
     {
       category: 'Engineering Practices & DevOps',
       icon: 'git',
-      items: ['JUnit 5 / Mockito / AssertJ', 'TDD', 'Swagger / Knife4j', 'CI/CD', 'Docker', 'Code Review', 'ELK', 'SonarQube'],
+      items: ['JUnit 5 / Mockito / AssertJ', 'TDD', 'Swagger / Knife4j', 'CI/CD', 'Docker', 'Code review', 'ELK', 'SonarQube'],
     },
   ],
 
-  /** Work experience — timeline */
+  /** Work experience */
   experience: [
     {
       company: 'Shanghai Oufu Network Technology Co., Ltd.',
       role: 'Engineering Manager',
       period: '2022.11 – 2026.06',
-      tags: ['HR SaaS Full Chain', 'Platform 0→1', 'Configuration-Driven Architecture', 'LLM Engineering'],
+      tags: ['HR SaaS, end to end', 'Platform builds', 'Configuration-driven architecture', 'LLM engineering'],
       highlights: [
-        'Org & HR Data Hub (2023.03–2024.06; sole owner of the main service, 0→1): real-time binlog subscription via Alibaba Cloud DTS, translating row changes into human-readable change records and daily snapshots. Extended AbstractUserMetaStore to persist consumption offsets per consumer group into the business database, resuming correctly across restarts and multi-instance deployment; all 123 Java files on the main branch were first introduced by me.',
-        'Attendance Platform (2023.06–2024.05; primary builder, 0→1): built the shift, team, rostering, overtime, attendance-report and work-calendar domains from engineering initialisation. Replaced period-end full in-memory report generation with a "daily temporary data + period-end roll-up" two-stage model, avoiding OOM and enabling person-day incremental recalculation; added 656 Java files and 48 test classes.',
-        'Enterprise Reporting Platform (2022.12–2025.02; core developer, led the build phase): designed the report SQL builder engine from zero (7 clause builders + 20+ pluggable operators) and the Trino federated-query foundation across four data sources, sustaining 26 months of iteration with 96% of main-branch commits.',
-        'AI Recruiting Platform (2025.09–2026.01; sole owner of the Xianyu channel): built Taobao Open Platform bulk publishing and lead capture; wired Dify LLM orchestration and the WeCom bot, taming LLM uncertainty with timeout convergence, a circuit breaker and Redisson idempotency keys, and keeping high-precision amount calculation in QLExpress4 — the "LLM generates, rule engine computes" hybrid architecture.',
-        'Performance Management System (2025.07–2026.04; core developer, second-largest contributor): modelled fast-changing appraisal templates on PostgreSQL JSONB with validation pushed into domain objects plus a checker chain; delivered the full loop from cycle configuration to task generation, multi-evaluator scoring, result import and adjustment, and interview confirmation — 25 REST endpoints.',
+        'HR Data Hub (2023.03–2024.06; sole owner of the core service, built from scratch): real-time change data capture through Alibaba Cloud DTS, turned into readable change history plus daily employee snapshots. I extended AbstractUserMetaStore to persist consumer offsets per group in the business database, with a watermark for skipping records already consumed, so restarts and multiple instances resume cleanly. All 123 Java files on main are mine.',
+        'Attendance Platform (2023.06–2024.05; primary builder, built from scratch): built the shift, team, rostering, overtime, reporting and work-calendar domains from the first commit. Replaced period-end full-table loads with a two-stage model — daily staging plus a period-end roll-up — which removed the OOM risk and made person-day recalculation possible. 656 new Java files, 48 test classes.',
+        'Enterprise Reporting Platform (2022.12–2025.02; core developer, led the initial build): designed the SQL builder from scratch — seven clause builders and 20+ pluggable operators — plus a Trino layer over four data sources. 26 months of iteration and 96% of all commits on main.',
+        'AI Recruiting Platform (2025.09–2026.01; sole owner of the Xianyu channel): connected the Taobao Open Platform for bulk job posting and lead capture. Brought in Dify orchestration and the WeCom bot, kept the model on a short leash with a timeout, a kill switch and idempotency keys, and left money maths to QLExpress4 — the model writes, the rule engine calculates.',
+        'Performance Management System (2025.07–2026.04; core developer, second of four contributors): modeled frequently changing review templates on PostgreSQL JSONB and pushed validation into domain objects and a chain of checkers. Shipped the full cycle — configuration, task generation, multi-rater scoring, import and adjustment, interview confirmation — with 25 REST endpoints.',
       ],
     },
     {
@@ -512,10 +512,10 @@ const en = {
       period: '2021.03 – 2022.07',
       tags: ['Spring Cloud', 'PostgreSQL', 'Docker', 'TDD', 'CI/CD'],
       highlights: [
-        'Designed and optimized the Fiola financial platform architecture, integrated CI/CD, and led config-server and chrome-headless services — improving development efficiency and stability.',
-        'Owned core development of the Fiola user and ETL modules, meeting high-concurrency, high-performance requirements and shipping on time.',
-        'Led the Workio HR time-management module (scheduling, overtime, clock-in, leave, attendance), improving HR efficiency and data accuracy.',
-        'Drove TDD and pair programming for over a year, led Fiola Phase-1 delivery and helped secure the Phase-2 contract and a new partnership with Changan Auto.',
+        'Designed and tuned the Fiola financial platform architecture, set up CI/CD and owned the config-server and chrome-headless services.',
+        'Owned core development of the Fiola user and ETL modules, meeting high-concurrency requirements and shipping on schedule.',
+        'Led the Workio HR time-management module — scheduling, overtime, clock-in, leave, attendance — improving both HR throughput and data accuracy.',
+        'Ran TDD and pair programming for over a year; led the Fiola Phase 1 delivery that secured the Phase 2 contract and a new engagement with Changan Auto.',
       ],
     },
     {
@@ -524,10 +524,10 @@ const en = {
       period: '2019.07 – 2020.11',
       tags: ['Spring Boot', 'SaaS', 'Refactoring', 'Swagger'],
       highlights: [
-        'Led a full refactor of the Loan Supermarket platform — solo architecture design plus core modules: merchant, channel, product, loan, permissions and statistics.',
-        'Integrated Swagger with Spring Boot and optimized automated releases; team development and deployment efficiency up 30%+.',
-        'Migrated the project to a SaaS platform and re-architected it, cutting server cost by ~25% and reducing daily maintenance effort.',
-        'Contributed to the SMS platform refactor: built the base framework and implemented the core sending module for stable high-concurrency operation.',
+        'Led a ground-up rebuild of the Loan Supermarket platform: architecture plus modules for merchants, channels, products, loans, permissions and reporting.',
+        'Brought in Swagger and streamlined automated releases, cutting development-to-deploy turnaround by around 30%.',
+        'Moved the product onto a SaaS footing and re-architected it, trimming server costs by roughly 25% and the day-to-day maintenance load with them.',
+        'Contributed to the SMS platform rebuild, laying down the base framework and the core sending module for stable high-concurrency operation.',
       ],
     },
     {
@@ -536,93 +536,93 @@ const en = {
       period: '2016.07 – 2019.06',
       tags: ['Spring Boot', 'JPA', 'Performance Tuning', 'ELK'],
       highlights: [
-        'Solely delivered the automated answer-sheet module end-to-end with caching and performance tuning; v1.0 shipped two months early — earning early conversion to permanent staff and promotion to Backend Lead.',
-        'Deeply involved in question-bank, permissions and quiz module development and performance optimization, improving response speed and user experience.',
-        'Led Code Review on key modules to unify team standards; promoted IntelliJ IDEA and Java 8 Stream / Lambda features.',
+        'Delivered the answer-sheet automation module single-handedly, with caching and profiling; v1.0 landed two months early, which earned an early conversion to permanent staff and a promotion to backend lead.',
+        'Worked across the question bank, permissions and quiz modules, improving response times and the overall experience.',
+        'Ran code review on the modules that mattered and pushed the team onto IntelliJ IDEA and Java 8 streams and lambdas.',
       ],
     },
   ],
 
-  /** Selected projects — ordered by strength of evidence */
+  /** Selected projects — ordered by strength of evidence, not chronology */
   projects: [
     {
-      name: 'datahub · Org & HR Data Hub',
-      role: 'Core Developer · Sole Owner of the Main Service (0→1)',
+      name: 'datahub · HR Data Hub',
+      role: 'Core developer · Sole owner of the core service, built from scratch',
       period: '2023.03 – 2024.06',
       featured: true,
       summary:
-        'HR SaaS organisational change-data platform: captures business-database binlog in real time via Alibaba Cloud DTS, translates row changes into business-readable change records with table/field metadata configuration, materialises daily employee snapshots for point-in-time retrospection and condition-group people search, and offloads historical queries from the business database to ClickHouse.',
+        'Change-data platform for HR. Alibaba Cloud DTS captures binlog in real time; table and field metadata turn raw row changes into readable history, while daily snapshots answer questions about what the organization looked like on any given date or which people match a set of conditions. Historical queries run on ClickHouse instead of the business database.',
       highlights: [
-        'Built the binlog subscription pipeline from zero: extended AbstractUserMetaStore to persist offsets per consumer group into the business database with a configurable maxConsumedRecordId watermark that skips already-consumed records, so restarts and multi-instance deployments resume correctly.',
-        'Converged at-least-once delivery into no-duplicate / no-loss with three layers — watermark pre-filtering, Dubbo retries and a unique-constraint backstop treating DuplicateKeyException as already processed — plus empty-change suppression to keep heartbeat updates out of the timeline.',
-        'Patched JSONB support into the DTS SDK via same-fully-qualified-name class shadowing (zero intrusion, upgrade path preserved); changelog construction is fully metadata-driven, so onboarding a new monitored table means configuration data only — no code — and 16 fine-grained cache regions protect the translation hot path.',
+        'Built the CDC pipeline from nothing, starting with the offset problem: the SDK writes its checkpoint to a local file that a container loses on restart, so I extended AbstractUserMetaStore to persist per-consumer-group offsets in the business database and added a maxConsumedRecordId watermark to skip what had already been consumed.',
+        'Turned at-least-once delivery into no-loss, no-duplicate: a watermark pre-filter, Dubbo retries and a unique constraint that treats DuplicateKeyException as “already done”, plus suppression of empty changes so heartbeat updates never pollute the timeline.',
+        'The DTS SDK had no JSONB type, leaving jsonb columns undecodable. Rather than fork it, I shadowed the enum under the same fully-qualified name — zero intrusion, upgrades still work. Changelog assembly is metadata-driven, so adding a table is data entry rather than code, and 16 small caches keep the translation path fast.',
       ],
       metrics: [
-        { value: '123', label: 'Java files on main — 100% introduced by me' },
-        { value: '0 lines', label: 'of code to onboard a new monitored table' },
-        { value: '556', label: 'commits across four repos (433 on main)' },
-        { value: '19', label: 'query filter operators (ranges, IN, null checks…)' },
+        { value: '123', label: 'Java files on main, every one introduced by me' },
+        { value: '0', label: 'Lines of code needed to add a new table' },
+        { value: '556', label: 'Commits across four repos (433 on main)' },
+        { value: '19', label: 'Filter operators (ranges, IN, null checks…)' },
       ],
       tags: ['Alibaba Cloud DTS', 'Spring Boot 2.1', 'PostgreSQL / JSONB', 'ClickHouse', 'Dubbo', 'XXL-Job', 'Redis'],
     },
     {
       name: 'timeManage · Attendance Platform',
-      role: 'Core Developer · Primary Builder (0→1)',
+      role: 'Core developer · Primary builder, built from scratch',
       period: '2023.06 – 2024.05',
       featured: true,
       summary:
-        'Time-management and attendance microservice for HR / HRO scenarios: shifts, teams, rostering, clock-in, overtime, leave, holidays and work calendars, daily/monthly/quarterly/yearly attendance reports and attendance cycles; it feeds attendance-cycle and monthly-report data to payroll and isolates group vs. client projects.',
+        'Attendance and time-management service for HR and HRO customers: shifts, teams, rosters, clock-ins, overtime, leave, work calendars, attendance cycles and daily, monthly, quarterly and yearly reports. It feeds attendance cycles and monthly reports into payroll, and keeps group and client projects separate.',
       highlights: [
-        'Built the service skeleton and core domains from engineering initialisation (shifts, teams, rostering, attendance rules, holidays, overtime, reports), isolating upstream domains (HR, projects, approval flows, data services) behind an ACL layer; added 656 Java files.',
-        'Refactored reporting into a "daily temporary data + period-end roll-up" two-stage model with person-day incremental recalculation, JSONB dynamic columns for report rows, and @Async / batched saves / parallel streams — eliminating OOM risk from full in-memory generation.',
-        'Externalised attendance, overtime and report-column formulas as configurable expressions, extended 13 business functions (seniority, overtime hours, payable days…) with an online validation API, and moved rostering from pre-generated rows to on-demand computation from the work calendar.',
+        'Stood up the service and its core domains from the first commit — shifts, teams, rostering, rules, holidays, overtime, reporting — behind an anti-corruption layer that shields HR, project, approval and data services. 656 new Java files.',
+        'Reworked report generation from “load everything at period end” to daily staging plus a period-end roll-up. That removed the OOM risk and made person-day recalculation possible; report rows keep their dynamic columns in JSONB, and @Async, batched saves and parallel streams keep run time in check.',
+        'Moved attendance, overtime and report-column formulas out of code and into configurable expressions, backed by 13 business functions (tenure, overtime hours, payable days…) and an online validation API. Rostering went from pre-generated rows to on-demand calculation against the work calendar.',
       ],
       metrics: [
-        { value: '656', label: 'new Java files (incl. 63 test files)' },
-        { value: '1,972', label: 'commits · 64% of the main branch' },
-        { value: '75', label: 'requirement tickets in 11 months' },
-        { value: '194', label: 'unit-test cases (48 test classes)' },
+        { value: '656', label: 'New Java files (63 of them tests)' },
+        { value: '1,972', label: 'Commits, 64% of the main branch' },
+        { value: '75', label: 'Tickets in 11 months' },
+        { value: '194', label: 'Unit tests across 48 classes' },
       ],
       tags: ['Spring Boot 2.1', 'MyBatis-Plus', 'PostgreSQL / JSONB', 'RabbitMQ', 'Redis', 'XXL-Job', 'Dubbo', 'Rule Engine'],
     },
     {
       name: 'report · Enterprise Reporting Platform',
-      role: 'Core Developer · Led the Build Phase',
+      role: 'Core developer · Led the initial build',
       period: '2022.12 – 2025.02',
       summary:
-        'Trino-based enterprise reporting service: a self-built SQL builder engine turns front-end view configuration into executable SQL, with federated queries over PostgreSQL, ClickHouse, MongoDB and MySQL, plus datasets, charts, cross-tabs, exports, data permissions and Dubbo RPC.',
+        'Enterprise reporting on Trino: a hand-built SQL builder turns front-end view settings into executable SQL, and the query layer federates PostgreSQL, ClickHouse, MongoDB and MySQL. Datasets, charts, pivot tables, exports, data permissions and Dubbo RPC sit on top.',
       highlights: [
-        'Designed the report SQL builder from zero: seven clause builders (select / from / join / where / group / order / limit) plus a query orchestration layer that splits reference fields into subqueries, drops unused left joins and auto-fills group-by columns; 20+ operators as pluggable classes — a new operator is one new class.',
-        'Trino 430 as the single query entry point, mapping four source types through catalogs and containing dialect differences in an adaptation layer; count and data queries run in parallel via CompletableFuture to cut paged-query latency, and count is skipped when totals are not needed.',
-        '26 months and 1,126 main-branch commits (96% share), +67k/−47k lines, 202 business Java files and 82 test files introduced; the build-from-scratch phase (2022.12–2023.05) alone contributed 558 commits, 185 Java files and 58 test files.',
+        'The SQL builder was the whole point. Seven clause builders — select, from, join, where, group, order, limit — plus an orchestration layer that turns referenced fields into subqueries, drops unused left joins and fills in missing group-by columns. Operators are classes, 20+ of them, so a new one is a new class.',
+        'Trino 430 is the single entry point; catalog mappings hide four different dialects behind one adaptation layer. Count and data queries run in parallel through CompletableFuture to keep paging fast, and when nobody needs the total, the count is skipped.',
+        '26 months, 1,126 commits on main (96% of the branch), +67k/−47k lines, 202 business Java files and 82 test files. The initial build alone — 2022.12 to 2023.05 — accounted for 558 commits, 185 Java files and 58 test files.',
       ],
-      tags: ['Trino 430', 'Spring Boot 2.1', 'JDBC / Druid', 'Federated Query', 'Dubbo', 'OAuth'],
+      tags: ['Trino 430', 'Spring Boot 2.1', 'JDBC / Druid', 'Federated query', 'Dubbo', 'OAuth'],
     },
     {
       name: 'MaltoseHr · AI Recruiting Platform',
-      role: 'Java Backend · Sole Owner of the Xianyu Channel',
+      role: 'Java backend · Sole owner of the Xianyu channel',
       period: '2025.09 – 2026.01',
       link: 'https://aizhaomu.offersaas.com/',
       ai: true,
       summary:
-        'AI recruiting platform for flexible staffing: a WeCom bot plus Dify LLM orchestration power C-side job-seeker chat and B-side recruiting; the Xianyu (Taobao Open Platform) channel supports bulk job publishing and applicant-lead capture, alongside compensation plans and automated payroll calculation (developed and verified in the test environment).',
+        'AI recruiting platform for flexible staffing. A WeCom (WeChat Work) bot and Dify orchestration handle candidate chat on one side and recruiter workflows on the other; the Xianyu channel (Alibaba’s second-hand marketplace) posts jobs in bulk and captures applicants. Compensation plans and automated payroll were built as well and verified in staging.',
       highlights: [
-        'Owned the Xianyu channel backend 0→1: account binding/unbinding, real-name status, job-template sync, bulk publishing (up to 200 posts per job), scheduled refresh and auto-takedown; an 8-type open-platform exception hierarchy plus spring-retry @Retryable backoff retry isolates third-party instability.',
-        'Wired Dify LLM orchestration — multiple apps including workflow — with streaming responses and full event parsing (node_started / node_finished / workflow_finished / message_end), and designed conversationId lifecycle management (Redis + TTL) to bridge WeCom stateless callbacks with multi-turn conversations.',
-        'Drew the LLM boundary: high-precision amount calculation stays in QLExpress4 configurable expressions (Strategy pattern decoupling parameter preparation from execution), while 15s timeout convergence, a Dify circuit breaker and Redisson RBucket idempotency keys resolve duplicate WeCom pushes caused by LLM timeouts.',
+        'Took the Xianyu channel from zero: account binding, real-name status, template sync, bulk posting (up to 200 posts per job), scheduled refresh and auto-takedown. Eight dedicated exception types plus spring-retry backoff keep Taobao’s flakiness at the edge of the service.',
+        'Wired Dify into the product — several apps, workflow ones included — with streaming responses and every workflow event handled (node_started, node_finished, workflow_finished, message_end). Managing conversationId in Redis with a TTL is what lets a stateless WeCom webhook hold a multi-turn conversation.',
+        'Set the model’s limits: money maths stays in QLExpress4 expressions, while a 15-second timeout, a kill switch and Redisson idempotency keys stop a slow model from double-posting to WeCom. The model writes; the rule engine calculates.',
       ],
       tags: ['Spring Boot 3.2', 'Java 21', 'Dify', 'QLExpress4', 'Redisson', 'WebSocket', 'Taobao Open Platform', 'WeCom'],
     },
     {
       name: 'performance · Performance Management System',
-      role: 'Core Developer · Second-largest Contributor (of 4)',
+      role: 'Core developer · Second of four contributors',
       period: '2025.07 – 2026.04',
       summary:
-        'Group HR SaaS performance subsystem covering the full appraisal loop — cycle configuration → evaluation task generation → multi-evaluator scoring → result import and adjustment → interview confirmation — with the from-scratch build phase accounting for 95% of my commits.',
+        'The group’s performance-review subsystem: cycle setup, evaluation task generation, multi-rater scoring, result import and adjustment, and interview confirmation. The initial build accounted for 95% of my commits.',
       highlights: [
-        'Modelled fast-changing appraisal details and indicator configuration on PostgreSQL JSONB (JsonbTypeHandler + PgObjectUtils) instead of a relational schema needing constant DDL; the cost — lost column-level constraints — is compensated by validation in domain objects and a checker chain (EmpConfigChecker + 4 checkers, errors pinpointed to row and column, ~250 lines removed from the cycle service).',
-        'Led the split of evaluation task details out of an embedded JSON column into a dedicated pms_evaluation_task_detail table, rebuilding read/write paths for parallel scoring; consolidated conditions into domain objects (EvaluationAspects = appraisal dimensions, EvaluationIndicator, EvaluatorsTaskContext) and returned Optional<T> from lookups to remove NPE branches.',
-        'Carried scores and ratios through BigDecimal with a dedicated high-precision utility and unit tests, added a state-machine guard (no score changes outside "in evaluation") and explicit @Transactional(rollbackFor = Exception.class) on the 7 multi-table write methods.',
+        'Review templates change with every cycle and a relational schema would mean constant DDL, so the whole structure lives in PostgreSQL JSONB through JsonbTypeHandler and PgObjectUtils. The trade-off is no column-level constraints, so validation moved into domain objects and a chain of checkers — four of them, reporting errors down to the row and column and cutting roughly 250 lines out of the cycle service.',
+        'Split evaluation details out of an embedded JSON blob into a pms_evaluation_task_detail table and rebuilt the read and write paths, which is what made parallel scoring by multiple raters workable. Conditions moved into domain objects — EvaluationAspects (the appraisal dimensions), EvaluationIndicator, EvaluatorsTaskContext — and lookups now return Optional<T> instead of null.',
+        'Scores and ratios run through BigDecimal end to end, with a small high-precision helper and unit tests. A state check blocks score changes outside “in evaluation”, and the seven multi-table writes carry explicit @Transactional(rollbackFor = Exception.class).',
       ],
       tags: ['Spring Boot 2.1', 'PostgreSQL / JSONB', 'MyBatis-Plus', 'Dubbo', 'Redis', 'JUnit 5'],
     },
@@ -632,11 +632,11 @@ const en = {
       period: '2024.08 – 2025.08',
       link: 'https://lg.offersaas.com/',
       summary:
-        'One-stop full-lifecycle HR management platform for mid-to-large enterprises, supporting direct employment, dispatch, gig and project-based staffing — solving contract signing, complex approval flows and large-scale employee-data management under high concurrency.',
+        'Full-lifecycle HR platform for mid-size and large employers, covering direct hire, dispatch, gig and project-based work — contract signing, multi-step approvals and large employee datasets under load.',
       highlights: [
-        'Led the OfferPersonnel core HR service design, using the Strategy pattern to support differentiated rules across staffing forms and keeping roster data consistent under frequent changes.',
-        'Built a configurable approval hub on a deeply customised Flowable, supporting on/offboarding, contract stamping and OA leave with approval flows decoupled from business logic.',
-        'Used the Adapter pattern to mask signature-vendor differences (eSign, Shangshangqian), with async queues and a state machine resolving long-latency signing status; designed a "pre-check → batch processing → error rollback" import flow backed by multi-level caching.',
+        'Led the OfferPersonnel core service, using the strategy pattern so each employment type carries its own rules without forking the roster logic.',
+        'Built a configurable approval hub on a heavily customized Flowable, covering onboarding, offboarding, contract stamping and leave, with the flows decoupled from business code.',
+        'Hid e-signature vendor differences (eSign, Shangshangqian) behind an adapter, with async queues and a state machine to track slow signings; the import path is pre-check, batch, roll back on error, with caching in front of the hot queries.',
       ],
       tags: ['Spring Boot', 'Dubbo', 'Flowable', 'RabbitMQ', 'Redis', 'XXL-Job', 'PostgreSQL'],
     },
@@ -646,11 +646,11 @@ const en = {
       period: '2021.03 – 2021.06',
       link: 'https://fiola.sit.finexos.co.uk/',
       summary:
-        'An open-banking-API financial management platform that extracts bank data with user consent, analyzes spending behavior and financial patterns, delivers monthly financial-health scores and flags potential financial risks.',
+        'Open-banking platform that pulls bank data with customer consent, analyzes spending and financial behavior, and produces a monthly financial-health score with early warnings for risk.',
       highlights: [
-        'Developed and optimized the backend logic of the customer financial-health scoring model, automatically flagging high-leverage / default-risk users for early operations intervention.',
-        'Led project framework setup and core IAM module development; independently designed and implemented the credit-report module.',
-        'Practiced TDD throughout with 100% test coverage, earning strong client trust.',
+        'Built and tuned the scoring logic that flags high-leverage and default-risk customers early enough for the operations team to act.',
+        'Set up the project skeleton and the IAM module, and designed the credit-report module end to end.',
+        'TDD throughout, with 100% test coverage, which is a large part of why the client trusted us.',
       ],
       tags: ['Spring Cloud', 'PostgreSQL', 'Docker', 'TDD', 'ETL', 'Open Banking'],
     },
@@ -659,11 +659,11 @@ const en = {
       role: 'Senior Java Developer',
       period: '2021.06 – 2022.07',
       summary:
-        'An HR management system built around the three pillars of people, time and money — six modules covering organization, attendance tracking, payroll, employee incentives, fast reimbursement and temporary workforce management.',
+        'HR system built around people, time and money: organisation, attendance, payroll, incentives, expenses and temporary workforce, in six modules.',
       highlights: [
-        'Led attendance module design and implementation covering scheduling, clock-in and leave, with automated processing and accurate statistics.',
-        'Worked closely with three development squads to ensure efficient integration and coordination.',
-        'Significantly improved usability and data accuracy, supporting better management decisions.',
+        'Led the attendance module — scheduling, clock-in, leave — with automated processing and accurate reporting.',
+        'Coordinated with three squads to keep the modules integrating cleanly.',
+        'Made the system easier to use and its data more reliable, which gave managers something they could actually decide on.',
       ],
       tags: ['Spring Boot', 'Attendance Engine', 'HR Management', 'Agile'],
     },
@@ -672,11 +672,11 @@ const en = {
       role: 'Senior Java Developer',
       period: '2019.07 – 2020.11',
       summary:
-        'Led the Loan Supermarket refactor SaaS platform, giving merchants product-line management, marketing strategy configuration, whitelist management and multi-dimensional statistics to lift channel efficiency and conversion.',
+        'The rebuilt Loan Supermarket SaaS: product lines, marketing rules, whitelists and reporting for merchants, aimed at channel efficiency and conversion.',
       highlights: [
-        'Rewrote 95% of the codebase on a Spring Boot + JPA + MyBatis stack for complex statistics needs.',
-        'Introduced Swagger for API management and designed fine-grained permission controls to secure sensitive resources.',
-        'Unified global exception handling and response envelopes, standardizing code structure and domain modeling for robustness.',
+        'Rewrote 95% of the codebase on Spring Boot, JPA and MyBatis to handle the reporting load.',
+        'Added Swagger for API management and fine-grained permissions around sensitive resources.',
+        'Standardised exception handling and response envelopes, which made the whole codebase easier to reason about.',
       ],
       tags: ['Spring Boot', 'JPA', 'MyBatis', 'Swagger', 'SaaS', 'Access Control'],
     },
@@ -685,11 +685,11 @@ const en = {
       role: 'Backend Lead (Java)',
       period: '2016.07 – 2019.06',
       summary:
-        'An intelligent learning diagnosis and training system that collects and analyzes quiz data to auto-generate personalized study reports and exercises, with scanned answer-sheet auto-grading and multi-dimensional analysis.',
+        'Learning diagnostics that turn quiz data into personalized study reports and practice sets, including scanned answer-sheet grading and multi-dimensional analysis.',
       highlights: [
-        'Led the automated answer-sheet module from zero, integrating scanner software for stable response-data collection as a reliable source for report generation.',
-        'The product rolled out to 10+ middle schools in Shanghai (including Qibao Middle School), earning praise from parents and teachers.',
-        'As backend lead, mentored junior developers and played a key role in cross-department communication.',
+        'Built the answer-sheet module from scratch and integrated the scanner software, so response data arrived reliably enough to drive reports.',
+        'Rolled out to 10+ middle schools in Shanghai, Qibao included, with good feedback from parents and teachers.',
+        'Mentored junior developers and handled most of the cross-team communication as backend lead.',
       ],
       tags: ['Spring Boot', 'JPA', 'ELK', 'SonarQube', 'WeChat OA / Pay', 'Agile'],
     },
@@ -702,9 +702,9 @@ const en = {
     degree: "Bachelor's",
     period: '2012 – 2016',
     highlights: [
-      'Sep 2012 – Sep 2014: Assistant lab administrator, Computer Science department; Deputy Director of the student union IT service team.',
-      'Sep 2014 – Mar 2015: first enterprise project — development of the IMS system.',
-      'Mar 2015 – May 2015: heating-supply system; framework setup, permissions module and HighCharts dashboards.',
+      '2012–2014: lab assistant in the computer science department and deputy head of the student union IT service team.',
+      '2014: first enterprise project — the IMS system.',
+      '2015: heating-supply system — framework, permissions and HighCharts dashboards.',
     ],
   },
 
@@ -714,8 +714,8 @@ const en = {
   /** Navigation items */
   navItems: [
     { id: 'ai', label: 'AI Literacy' },
-    { id: 'advantages', label: 'Core Strengths' },
-    { id: 'skills', label: 'Tech Stack' },
+    { id: 'advantages', label: 'Strengths' },
+    { id: 'skills', label: 'Stack' },
     { id: 'experience', label: 'Experience' },
     { id: 'projects', label: 'Projects' },
     { id: 'contact', label: 'Contact' },

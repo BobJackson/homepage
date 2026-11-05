@@ -22,9 +22,9 @@ function mockEnv({ lang, languages }) {
 
 const cases = [
   { name: 'localStorage=zh（用户手动切过中文）', env: { lang: 'zh', languages: ['en-US'] }, expect: ['王幼松', 'LLM 的', '查看精选项目', '期望 35–40K', 'boolean readyToJoin = true; // 随时到岗', '"OfferDatahub", "OfferTimeManage", "OfferReport"', '123', '656', 'HR SaaS 全链路'] },
-  { name: 'localStorage=en（用户手动切过英文）', env: { lang: 'en', languages: ['zh-CN'] }, expect: ['Wang Yousong', 'LLM Boundaries,', 'View Selected Projects', 'Expect 35–40K CNY/mo', 'boolean readyToJoin = true; // available immediately', '"OfferDatahub", "OfferTimeManage", "OfferReport"', 'Platform Systems, Built from Zero'] },
+  { name: 'localStorage=en（用户手动切过英文）', env: { lang: 'en', languages: ['zh-CN'] }, expect: ['Wang Yousong', 'LLM Boundaries & Engineering', 'View Selected Projects', 'Expect 35–40K CNY/mo', 'boolean readyToJoin = true; // available now', '"OfferDatahub", "OfferTimeManage", "OfferReport"', 'Platforms From Scratch'] },
   { name: '无存储 + 中文浏览器（自动检测）', env: { languages: ['zh-CN', 'zh'] }, expect: ['王幼松', '四大', '核心优势'] },
-  { name: '无存储 + 英文浏览器（自动检测）', env: { languages: ['en-US', 'en'] }, expect: ['Wang Yousong', 'Four Core', 'Strengths', 'Flexible Workforce Platform'] },
+  { name: '无存储 + 英文浏览器（自动检测）', env: { languages: ['en-US', 'en'] }, expect: ['Wang Yousong', 'What I Bring', 'Flexible Workforce Platform'] },
   { name: '无存储 + 空语言列表（兜底中文）', env: { languages: [] }, expect: ['王幼松', '联系我'] },
 ]
 

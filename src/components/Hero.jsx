@@ -40,7 +40,7 @@ function TerminalCard() {
           <>&nbsp;&nbsp;{kw('int')} experience = {nu('10')}; {cm('// yrs of backend & platform')}</>,
           <>&nbsp;&nbsp;{ty('Role')} target = {ty('Role')}.{st('SENIOR_BACKEND')}; {cm('// senior backend')}</>,
           <></>,
-          <>&nbsp;&nbsp;{cm('// three platform builds from zero')}</>,
+          <>&nbsp;&nbsp;{cm('// three platform builds, two from commit one')}</>,
           <>&nbsp;&nbsp;{ty('String[]')} built = &#123;</>,
           <>&nbsp;&nbsp;&nbsp;&nbsp;{st('"OfferDatahub"')}, {st('"OfferTimeManage"')}, {st('"OfferReport"')}</>,
           <>&nbsp;&nbsp;&#125;;</>,
@@ -52,7 +52,7 @@ function TerminalCard() {
           <>&nbsp;&nbsp;{ty('AiContract')} ai = {ty('AiContract')}.{st('llmGenerates')}()</>,
           <>&nbsp;&nbsp;&nbsp;&nbsp;.{st('ruleEngineComputes')}();</>,
           <></>,
-          <>&nbsp;&nbsp;{kw('boolean')} readyToJoin = {nu('true')}; {cm('// available immediately')}</>,
+          <>&nbsp;&nbsp;{kw('boolean')} readyToJoin = {nu('true')}; {cm('// available now')}</>,
           <>&#125;</>,
         ]
 
