@@ -134,7 +134,9 @@ npm run preview
 ## 🐳 Docker 与自动化部署（CI/CD）
 
 项目已容器化，并配置 **GitHub Actions 全自动流水线**：推送到 `main` 分支后，自动
-**构建 Docker 镜像 → 推送 Docker Hub → SSH 登录阿里云服务器重新部署**。
+**构建镜像 → 推送 Docker Hub（留档）→ runner 拉取后经 SSH 直传服务器 `docker load` → 重建容器**。
+
+> 服务器不访问任何 registry，因此**不需要代理**；镜像（约 20MB）压缩后由 GitHub runner 流式传输过去。
 
 ### 流水线概览
 
@@ -143,9 +145,9 @@ npm run preview
         │
         ▼
   ┌──────────────────┐     ┌──────────────────┐     ┌──────────────────┐
-  │ Job1 构建 & 推送   │ ──▶ │ Job2 SSH 部署      │ ──▶ │ 容器重新运行       │
-  │ Docker Buildx     │     │ pull + docker run │     │ http://host:port │
-  │ → Docker Hub      │     │ (appleboy/ssh)    │     │ --restart always │
+  │ Job1 构建 & 推送   │ ──▶ │ Job2 传输 & 部署    │ ──▶ │ 容器重新运行       │
+  │ Docker Buildx     │     │ pull → save | ssh │     │ http://host:port │
+  │ → Docker Hub      │     │ → docker load     │     │ --restart always │
   └──────────────────┘     └──────────────────┘     └──────────────────┘
 ```
 
